@@ -1,0 +1,164 @@
+
+
+                             IHE Change Proposal
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-097                          |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |2014.04.10                          |
+|Person assigned:                    |(assigned by Domain Technical       |
+|                                    |Committee)                          |
+
+                    Change Proposal Summary information:
+|Clarify Usage of OBX-4                                                    |
+|Submitter’s Name(s) and e-mail      |Todd Cooper <Todd@Center4MI.org>    |
+|address(es):                        |                                    |
+|Submission Date:                    |2014.03.31                          |
+|Integration Profile(s) affected:    |All PCD profiles that use OBX       |
+|                                    |segments (e.g., DEC, ACM, IPEC,     |
+|                                    |etc.)                               |
+|Actor(s) affected:                  |All in affected profiles            |
+|IHE Technical Framework or          |IHE PCD TF                          |
+|Supplement modified:                |                                    |
+|Volume(s) and Section(s) affected:  |Volume 2, Appenedix A & B.8         |
+|Rationale for Change:                                                     |
+|Implementors have found a lack of clarity on the normative requirements   |
+|for OBX-4 content and what may vary per message source.  This lack of     |
+|clarity can challenge the message consumer, which may be receiving        |
+|messages from multiple sources of the same device modality.  Two key      |
+|issues have been raised:                                                  |
+|Are the values in OBX-4 for a specific device modality, information model |
+|and parameter normative?  For example, if an infusion pump has a          |
+|parameter, MDC_PUMP_INFUSING_STATUS, contained in the pump’s “delivery”   |
+|channel, will the associated OBX-4 always have a (1) in the channel slot  |
+|(e.g., <mds>|<vmd>|1|<param #>)?                                          |
+|Can the OBX-4 containment values change from message-to-message, though   |
+|they are sent from the same actor during a single session?                |
+|NOTE:  During review of this CP at the IHE PCD 2014 Spring F2F meetings in|
+|Cleveland, it was determined that question (2) and the concept of a       |
+|“session” should not be addressed by OBX-4 usage.                         |
+|The changes below add clarification to the text to answer question (1)    |
+|above.                                                                    |
+
+
+
+
+Add the following section in Appendix A (before section A.1):
+
+For example the OBX-4 for the <VS Mon> <ECG> <Ctach> <HR> would be
+expressed as 1.2.1.3.
+
+NOTE:  The ordinal numbers in an OBX-4 are not normative for a given
+parameter (identified in OBX-3) and may vary between implementations.  Each
+OBX-4 Sub-Id must be unique within a given containment.
+
+In OBX-2 the valid HL7 types for the mapping are NM, ST, SN, CWE, CF
+(String may have some implied structure)
+
+
+
+
+
+Add the following section in Appendix B-8, OBX-4 subsection:
+
+OBX-4   Observation Sub-ID
+
+      This field shall be used to distinguish between multiple OBX segments
+      and represent the hierarchical (containment) relations among the
+      segments. It does so by providing an unambiguous mapping from
+      observation contained in the OBX segment to the IEEE 11073 containment
+      tree for the Medical Device System sourcing the observation (See
+      Error! Reference source not found. Error! Reference source not
+      found.). For device related data this field is used to group devices
+      hierarchically. For metric related data this field is used to
+      associate metrics to devices hierarchically, and to each other. The
+      dotted notation provided for in HL7 Ch7, 7.4.2.4, Fig 4 shall be used
+      as follows: <MDS>.<VMD>.<Channel>.<Metric> [.FACET [.SUBFACET]], where
+      the optional facet and subfacet entries are used only when specified
+      for a particular profile, and distinguish multiple information items
+      related to the same metric according to a specific scheme documented
+      with the particular profile. For device related data that convey
+      information about hierarchical levels higher than METRIC (that is,
+      information about an MDS, VMD, or Channel), the entries in the dotted
+      notation concerning the lower dot-levels (that is, VMD, Channel or
+      metric levels for an MDS, channel and METRIC for a VMD, and so forth)
+      have no meaning and this should be signified by setting them to zero).
+      So, for information relating to the first MDS, OBX-4 should be
+      1.0.0.0. Receiving systems shall recognize from such trailing zeros in
+      OBX-4 when the information applies to an MDS, VMD, or channel rather
+      than a metric.
+
+      This scheme allows the VMD, CHAN, METRIC and FACET information to be
+      associated with ‘ancestor’ information higher up in the observation
+      hierarchy. This is especially critical for devices like infusion pumps
+      that have multiple channels with the same METRIC level identifiers.
+      The scheme uses simple dotted decimal numeric identifiers where each
+      number is a nonnegative integer. These must create unique n-tuples for
+      each OBX. (That is, each OBX in a set grouped within the scope of an
+      OBR segment must have a distinct value of OBX-4).
+
+      The OBX-4 Sub-ID is not normative for a given metric (identified in
+      OBX-3).  For example, an OBX-4 of 1.2.3.4 is not fixed to “heart
+      rate.”  If a parameter is included in multiple places within a
+      containment (i.e., OBX-3 has the same value), the OBX-4 Sub-ID will be
+      unique between each instance.  Different systems may generate
+      different OBX-4 identifiers for the same metric – the only requirement
+      is that the OBX-4 uniquely identifies each instance of a metric within
+      a containment.
+
+      The special value ‘0’ implies an ‘anonymous’ placeholder for the
+      corresponding position in the containment hierarchy, for example an
+      unspecified VMD and/or CHAN except when the '0' is part of a sequence
+      of trailing '0' entries signifying that the dotted notation identifies
+      data related to an MDS, VMD, or channel rather than a metric (see
+      above).
+
+      IEEE 11073-20601 for Personal Health Devices does not use the VMD or
+      CHAN levels, e.g., 1.0.0.1 would be used for the observation hierarchy
+      MDC_DEV_SPEC_PROFILE_ PULS_OXIM / VMD / CHAN /
+      MDC_PULS_OXIM_PULS_RATE.
+
+      The values of the 'dotted notations' of the OBX segments associated
+      with a particular OBR (forming an ORDER_OBSERVATION segment group)
+      establish a nested hierarchical arrangement representing the
+      containment of lower-level within higher-level constructs (for
+      example, all metric OBXes with a dotted notation beginning with '1.2'
+      belong to the second VMD of the first MDS). This is exploited to
+      support a form of inheritance for time stamps (see Section Error!
+      Reference source not found. Error! Reference source not found.) so
+      that, for example, a time stamp given in OBX-14 at the channel level
+      applies to all metrics contained within that channel unless overridden
+      by a time stamp in OBX-14 in the metric itself.
+
+      To facilitate processing and use of this containment hierarchy, OBX
+      segments should be arranged in "dictionary order" of dotted notations,
+      meaning for example that all metrics belonging to the second channel
+      should appear together in order of their metric-level element of the
+      dotted notation (x.y.2.1, x.y.2.2, etc.) after any metrics belonging
+      to the first channel (x.y.1.z) and before any metrics belonging to the
+      third channel (x.y.3.z). Similarly, all OBX segments belonging to the
+      second VMD should be placed before those belonging to the second, and
+      so forth. This scheme may be used for '0' values in any position
+      simply by inserting them in the sort order before '1' values (simple
+      numeric sort within dot position). Note that this is not a simple
+      string sort, because of the possibility that the numbers in a
+      particular level may be more than a single digit long (e.g.,
+      1.11.2.3).
+
+      This ‘dictionary order’ should also be applied to device-related as
+      well as to metric OBX segments: all MDS device-related segments for
+      the first device should precede all VMD device-related segments for
+      the first VMD of the first device, which in turn should precede any
+      channel device-related segment(s) for the first channel, if any, of
+      the first device (recall that channels are optional), and any channel
+      segments should precede all the metric OBX segments of the first VMD
+      and channel of the first device. The order goes to the second channel
+      of the first VMD if any, and so on until the contents of all the
+      channels of the first VMD have been given, then device-related
+      segments for the second VMD, and so on in a similar fashion. (This is
+      in effect a depth-first traversal of the 11073 “containment tree” of
+      the objects in the device).
+
+

@@ -1,0 +1,85 @@
+
+
+                             IHE Change Proposal
+
+
+
+
+                            Tracking information:
+|IHE Domain                          |PCD                                 |
+|Change Proposal ID:                 |CP-PCD-101                          |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |4/8/2014                            |
+|Person assigned:                    |Jeff McGeath                        |
+
+                    Change Proposal Summary information:
+|Entity Identifier type EUI-64 Required for Production Systems Implementing|
+|PCD Profiles                                                              |
+|Submitter’s Name(s) and e-mail      |Jeff McGeath                        |
+|address(es):                        |Jeff.mcgeath@iatric.com             |
+|Submission Date:                    |4/8/2014                            |
+|Integration Profile(s) affected:    |All PCD Profiles                    |
+|Actor(s) affected:                  |All PCD Actors                      |
+|IHE Technical Framework or          |Revision 3 – Final Text August 14,  |
+|Supplement modified:                |2013                                |
+|Volume(s) and Section(s) affected:  |Volume 2                            |
+|Rationale for Change:                                                     |
+|Entity Identifiers and their usage in PCD transactions                    |
+|                                                                          |
+
+
+The current  PCD TF document makes a strong recommendation that systems use
+an EUI-64 Universal Identifier to identify the systems that the data
+originates from.  During discussions in previous years and again at the
+North American Connectathon on January 2014, and again at the IHE PCD Face
+to Face meetings in April 2014 it was discussed that there needs to be more
+than a strong recommendation that IHE PCD compliant systems use a EUI-64
+Universal Identifier.
+
+Discussions within those venues has resulted in an appraoch beibng proposed
+in the CP where any system running in a Production environment should be
+required to use a EUI-64 Universal Identifier.  Systems not running in a
+Production environment (operating at testing venues such as Connectathon,
+certification excercises, test labs, etc) will be allowed to use a EUI-64
+Universal Identifier, but also an OID or URI approach can be taken as well.
+
+
+
+The following updates to the TF document is being proposed to document this
+slightly stronger position of requiring a EUI-64 Universal Identifier and
+when it is required.
+
+
+
+
+
+Replace the sentence in section C.5 as follows:
+
+Original Text:
+
+In IHE PCD, the order of preference for systems of Universal ID is: EUI-64,
+OID, URI, and last DNS (Domain Name Service).
+
+
+
+Proposed new text:
+
+In IHE PCD, the order of preference for systems of Universal ID is: EUI-64,
+OID and URI.  In addition to this order of preference it is noted that any
+IHE PCD system running in a production environment shall only use a EUI-64
+Universal ID.  Systems running in test environments or certification
+environments are allowed to use an OID or URI Universal ID
+
+
+
+
+
+Strike the following text from section C.5
+
+Identifying with a DNS name. When the assigning authority is an information
+system or a manufacturer, it is acceptable to use a Domain Name Service
+name that uniquely identifies it. An IP address is a form of DNS, so it is
+also acceptable. These are less stable and permanent than the other Unique
+ID systems, which is why they are the least preferred.
+
+

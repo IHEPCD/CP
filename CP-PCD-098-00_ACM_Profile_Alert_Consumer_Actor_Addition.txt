@@ -1,0 +1,283 @@
+
+
+                             IHE Change Proposal
+
+
+
+
+                            Tracking information:
+|IHE Domain                          |PCD                                 |
+|Change Proposal ID:                 |CP-PCD-098                          |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |4/8/2014                            |
+|Person assigned:                    |                                    |
+
+                    Change Proposal Summary information:
+|ACM Profile Alert Consumer Actor Addition                                 |
+|Submitter’s Name(s) and e-mail      |Jeff McGeath                        |
+|address(es):                        |Jeff.mcgeath@iatric.com             |
+|Submission Date:                    |4/8/2014                            |
+|Integration Profile(s) affected:    |ACM                                 |
+|Actor(s) affected:                  |New Actor - ACON                    |
+|IHE Technical Framework or          |Rev 1.4 7/11/2013                   |
+|Supplement modified:                |                                    |
+|Volume(s) and Section(s) affected:  |                                    |
+|Rationale for Change:                                                     |
+|A new actor is being proposed to expose the Alert Receiver functional     |
+|behaviour that is assumed inside of the Alert Manager actor, and make it a|
+|separate functional actor that can consume alerts from an Alert Reporter. |
+|This will allow systems who elect to implement this actor to have the     |
+|ability to consume alerts without the additional overhead of all of the   |
+|other functionality required by an Alert Manager actor.                   |
+|This new actor addition does not propose any new PCD transactions, nor    |
+|does it change any of the behaviour that exists today between an AR and an|
+|AM or an AM and an AC.                                                    |
+|                                                                          |
+
+
+Add the following row to table X.1-1:
+|Alert Consumer|Report Alert  |Inbound       |R             |3.Y           |
+|(ACON)        |[PCD-04]      |              |              |              |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Replace the diagram in Figure X.1-1 with the following:
+
+
+                                   PCD-04
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Add the following row to table X.2-1:
+
+|Alert Consumer (ACON)   |                        |                        |
+
+
+Add the following text to <Appendix A> Actor Summary Definitions:
+
+Alert Consumer – The Alert Consumer (ACON) actor receives the alert from
+the Alert Reporter (AR) and uses the alert information strictly as a
+consumer of the alert being raised.  There is no implementation requirement
+for how the ACON ultimately uses the alert information.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Replace the diagram in Figure X.2-1 with the following:
+
+[pic]
+
+
+
+
+Add the following text to <Appendix A> Actor Summary Definitions, at Line
+436 (just before the expanded Alert Manager (AM) definition:
+
+Alert Consumer (ACON) Actor
+This actor receives alerts from the AR.  The actor may elect to use the
+alert for internal application usage, reporting purposes, or
+storage/caching for future reporting capabilities.  There is no
+implementation requirement defined by the ACM profile in regards to how the
+ACON actor may elect to use the alert data, but it is assumed that display
+of the alert in some form takes place in an application implementing the
+ACON actor.
+
+
+
+Add the following text to Section 3.Y PCD-04 Report Alert:
+
+This section corresponds to Transaction PCD-04 of the IHE Technical
+Framework. Transaction
+PCD-04 is used by the Alert Reporter, Alert Consumer and the Alert Manager
+(AM) actor.
+
+
+
+Add the following text to Section 3.Y.1 Scope:
+
+This transaction is used by the Alert Reporter to report alerts to the
+Alert Manager (AM) and/or the Alert Consumer. The Alert Reporter (AR) sends
+alerts to the Alert Manager (AM) and/or the Alert Consumer actor in an
+unsolicited manner.
+
+
+
+Replace the diagram in 3.Y.2 Use Case Roles with the following:
+
+
+[pic]
+
+
+
+Add the following text to Section 3.Y.2 Use Case Roles:
+
+Actor: Alert Consumer
+Role: Receives Report Alert from Alert Reporter
+
+
+
+Change section title text of 3.Y.4.1:
+AR reports to AM and/or ACON
+
+
+
+
+
+
+
+
+
+
+
+
+
+Change diagram and accompanying text in section 3.Y.4.1:
+
+[pic]
+
+AR sends Report Alert to AM and/or ACON as an HL7 ORU message.
+
+
+Change table 3.Y.4.1.1: PCD-04 Transaction Conformance text:
+<On the row describing purpose, change the description text as follows:>
+Report Alert from AR to AM and/or ACON
+
+
+
+Change text of section 3.Y.4.1.2 PCD-04 Report Alert (ORU^R40^ORU_R40)
+static definition
+
+The PCD-04 Report Alert message is used to communicate ACM data
+      From an Alert Reporter (AR) to Alert Manager (AM) and/or Alert
+Consumer (ACON)
+
+
+Change text of section 3.Y.4.1.3 Trigger Events
+The AR has arrived at the onset, continuation of, or conclusion an event
+which may be an alert
+and sends it to the AM and/or the ACON.
+
+
+Change text of section 3.Y.4.1.4 Message Semantics
+
+This message is meant to convey from the AR actor to the AM and/or ACON
+actor the fact that an alert is occurring, is still occurring, or has ended
+along with the data related to the alert to identify the patient and/or
+location, the alerting condition, and any observations associated with the
+alert.
+
+
+Change text of section 3.Y.4.1.5 Expected Actions
+
+HL7 ACK from the Alert Manager (AM) and/or Alert Consumer (ACON) actor back
+to the Alert Reporter (AR) actor is used to communicate that the Alert
+Manager (AM) and/or Alert Consumer (ACON) actor has received the Report
+Alert [PCD-04] transaction from the Alert Reporter (AR) actor. The Report
+Alert [PCD-04] is asynchronous to Report Dissemination Alert Status [PCD-
+07] transactions by an indeterminate amount of time.  HL7 ACK is therefore
+not used to report dissemination status of the alert as it would leave the
+Alert Reporter (AR) actor awaiting HL7 ACK receipt for an indeterminate
+amount of time.
+
+While the AR to AM and/or ACON message [PCD-04] is one message it is likely
+to result in the potential for many messages from AM to AC and many
+messages from AC back to AM and from AM back to AR. Communication device
+operator response delays may result in delays of AC to AM and AM back to AR
+message delays.
+-----------------------
+
+                                    Alert
+
+                                  Reporter
+
+                                    (AR)
+
+
+
+                                    Alert
+
+                                  Reporter
+
+                                    (AR)
+
+
+
+                                    Alert
+
+                                  Reporter
+
+                                    (AR)
+
+
+
+                                    Alert
+
+                                  Reporter
+
+                                    (AR)
+
+
+
+                                   PCD-06
+
+
+
+                                   PCD-07
+
+
+
+                                   PCD-04
+
+
+
+

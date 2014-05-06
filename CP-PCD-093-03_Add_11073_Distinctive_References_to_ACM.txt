@@ -1,0 +1,83 @@
+
+
+IHE Change Proposal
+
+
+
+
+Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-093-03                       |
+|Change Proposal Status:             |Submitted to PCD TC for vote        |
+|Date of last update:                |2013.5.16                           |
+|Person assigned:                    |Monroe Pattillo                     |
+
+Change Proposal Summary information:
+|ACM Updates: Add 11073 Distinctive References to ACM                      |
+|Submitter’s Name(s) and e-mail      |Monroe Pattillo                     |
+|address(es):                        |<monroe.pattillo@gmail.com>         |
+|Submission Date:                    |2013.5.9                            |
+|Integration Profile(s) affected:    |ACM                                 |
+|Actor(s) affected:                  |None                                |
+|IHE Technical Framework or          |ACM Supplement, Trial Implementation|
+|Supplement modified:                |dated 2012.08.16                    |
+|Volume(s) and Section(s) affected:  |Volume 2, Volume 3, and Appendix    |
+|                                    |Examples                            |
+|Rationale for Change:                                                     |
+|ACM makes use of IEEE 11073-10101 Nomenclature and 11073-10201 Domain     |
+|Information Model (DIM) data object values and enumerations which it maps |
+|to ACM PCD-04 transaction HL7 data items (segment fields, components,     |
+|etc.).  ACM also adds values to communicate information not identified in |
+|11073.  It is not always clear to those not familiar with ACM PCD-04 use  |
+|of HL7 which items would or would not be expected to be found in 11073.   |
+|This CP would add specific 11073 references to the ACM TI and specifically|
+|indicate where ACM makes use of items which would not be found in 11073.  |
+|The following is the substances of the changes.                           |
+|                                                                          |
+|ACM items mapped to 11073                                                 |
+|ACM MDS in OBX-4 Sub-ID dot notation element 1 MDS position maps to 11073 |
+|MDS with 11073 MDS value in OBX-5 Observation Value                       |
+|                                                                          |
+|ACM VMD in OBX-4 Sub-ID dot notation element 2 VMD position maps to 11073 |
+|VMD with 11073 VMD value in OBX-5 Observation Value                       |
+|                                                                          |
+|ACM CHANNEL in OBX-4 Sub-ID dot notation element 3 CHANNEL position maps  |
+|to 11073 CHAN with 11073 CHAN value in OBX-5 Observation Value            |
+|                                                                          |
+|ACM METRIC in OBX-4 Sub-ID dot notation element 4 METRIC position maps to |
+|11073 NU with 11073 NU value in OBX-5 Observation Value                   |
+|                                                                          |
+|ACM MDC_ATTR_ALARM_STATE in OBX-3 Observation Identifier with OBX-4 Sub-ID|
+|dot notation element 5 FACET with value 4 whose value in OBX-4 Observation|
+|Value enumerations of active, inactive, latched map to 11073 alarm states |
+|of active, inactive, latched                                              |
+|                                                                          |
+|ACM MDC_ATTR_ALARM_INACTIVATION_STATE in OBX-3 Observation Identifier with|
+|OBX-4 Sub-ID dot notation element 5 FACET with value 5 whose value in     |
+|OBX-5 Observation Value enumerations of enabled, alarm-paused, alarm-off, |
+|audio-paused, audio-off map to 11073 alarm inactivation states of enabled,|
+|alarm-paused, alarm-off, audio-paused, audio-off                          |
+|                                                                          |
+|ACM items not in 11073                                                    |
+|ACM FACET in OBX-4 Sub-ID dot notation FACET position with value in OBX-5 |
+|Observation Value with FACET values of 1 for event identification, 2 for  |
+|source identification, 3 for event phase, 4 for alert state (values for   |
+|which are mapped from 11073) , 5 for inactivation state (values for which |
+|are mapped from 11073), 6 for real-time location, and 7 for evidentiary   |
+|data                                                                      |
+|                                                                          |
+|ACM Alert Type in OBX-8 Abnormal Flags with values of SP for physiological|
+|alarm, ST for technical alarm, and SA for advisory, defaulting to         |
+|physiological alarm if not present                                        |
+|                                                                          |
+|ACM Alert priority in OBX-8 Abnormal Flags with values of PH for high, PM |
+|for medium, PL for low, and PN for no indicated priority, defaulting to no|
+|indicated priority if not present                                         |
+|                                                                          |
+|ACM MDC_ATTR_EVENT_PHASE  with enumeration values of start, stop,         |
+|start_only, present, tpoint, continue, end, update, escalate, deescalate, |
+|reset, _START, _END, _STOP, _CHANGE, _CHANGED, _CLEARED, _COMPL           |
+|                                                                          |
+|                                                                          |
+|                                                                          |
+

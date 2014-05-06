@@ -1,0 +1,105 @@
+
+
+IHE Change Proposal
+
+
+
+
+Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-092-03                       |
+|Change Proposal Status:             |Submitted to PCD TC for vote        |
+|Date of last update:                |2013.5.16                           |
+|Person assigned:                    |Monroe Pattillo                     |
+
+Change Proposal Summary information:
+
+|ACM Updates: Change Alarm CM to Alert CM to ACM Profile                   |
+|Submitter’s Name(s) and e-mail      |Monroe Pattillo                     |
+|address(es):                        |<monroe.pattillo@gmail.com>         |
+|Submission Date:                    |2013.4.18                           |
+|Integration Profile(s) affected:    |ACM                                 |
+|Actor(s) affected:                  |AR, AM, AC                          |
+|IHE Technical Framework or          |ACM Supplement, Trial Implementation|
+|Supplement modified:                |dated 2012.08.16                    |
+|Volume(s) and Section(s) affected:  |Volume 2, Volume 3, and Appendix    |
+|                                    |Examples                            |
+|Rationale for Change:                                                     |
+|The IEEE 11073 Domain Information Model (DIM) defines Alerts as including |
+|both Alarms (Physiological and Technical) and Advisories.  IHE PCD defines|
+|Events communicated between systems as being covered under a different    |
+|profile from Alerts being communicated to people.                         |
+|                                                                          |
+|By defining ACM as Alarm Communication Management there is an assumption  |
+|that the profile is only appropriate for the communication of Alarm type  |
+|Alerts and that it would be inappropriate to use the profile to           |
+|communicate Advisory type Alerts.  This is not the case.  The capabilities|
+|and use cases defined in the ACM Trial Implementation are suitable for    |
+|communication of either class of Alert:  an Alarm (Physiological or       |
+|Technical), or an Advisory.  Use of priority by Advisories does not       |
+|detract or alter the binding of urgency to alarm priority as defined in   |
+|11073.                                                                    |
+|As Alarm Communication Management (ACM) is too narrow to permit inclusion |
+|of communication of Advisories then change it to Alert Communication      |
+|Management (still ACM) and all acronym references for actors and other    |
+|references from Alarm to Alert, e.g.                                      |
+|Alarm Reporter (AR) becomes Alert Reporter (still AR)                     |
+|Alarm Manager (AM) becomes Alert Manager (still AM)                       |
+|Alarm Communicator (AC) becomes Alert Communicator (still AC)             |
+|The transaction numbering is unchanged, but the names would be changed    |
+|from … Alarm … to … Alert …, as in…                                       |
+|PCD-04 Report Alarm would be PCD-04 Report Alert                          |
+|PCD-06 Disseminate Alarm would be PCD-06 Disseminate Alert                |
+|PCD-07 Report Dissemination Alarm Status would be PCD-07 Report           |
+|Dissemination Alert Status                                                |
+|As HL7 2.8 ballot defines ORU^R40 as Unsolicited Alert Observation Message|
+|(Alert, not Alarm) with a description of…                                 |
+|The R40 trigger event is used for observation reports that include an     |
+|alertable condition, i.e., for which some timely human or application     |
+|intervention in patient care may be indicated by the findings.            |
+|There is no change in the event trigger to broaden the reach of ACM from  |
+|Alarm to Alert.                                                           |
+|The result is that the reach of the ACM (Alert Communication Management)  |
+|profile is now broader and can be used for alerts other than alarms, such |
+|as advisories.  This might make ACM more usable by other IHE domains for  |
+|profiles that need a means of communication to people of alerts that are  |
+|not alarms, e.g. advisories.                                              |
+|In keeping with this broader reach of ACM (Alert Communication Management)|
+|there is now a requirement for an additional parameter (OBX segment) in   |
+|association with the PCD-04 Report Alert transaction to distinguish       |
+|whether the alert is an Alarm (as indicated by default in the absence of  |
+|the parameter for backward compatibility) or an Advisory.  The parameter  |
+|ALERT_CLASS shall have required possible values of MDC_EVT_ALARM to       |
+|indicate that the alert is an alarm or MDC_EVT_ADVIS_CHK to indicate that |
+|the alert is an advisory.  Examples in ACM TI to be adjusted accordingly. |
+
+-----------------------
+
+
+
+
+ALERT
+  Alarm
+    Technical
+
+
+ALERT
+  Alarm
+    Physiological
+
+
+ALERT
+  Advisory
+
+
+                                 ACM PCD-04
+
+
+EVENT
+
+
+                               EC/IPEC PCD-10
+
+
+
+

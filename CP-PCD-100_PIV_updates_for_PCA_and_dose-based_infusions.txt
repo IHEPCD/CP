@@ -1,0 +1,627 @@
+
+
+                             IHE Change Proposal
+
+
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-100                          |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |04/09/2014                          |
+|Person assigned:                    |(assigned by Domain Technical       |
+|                                    |Committee)                          |
+
+                    Change Proposal Summary information:
+|PIV updates for PCA and dose-based infusions                              |
+|Submitter’s Name(s) and e-mail      |Jeff Rinda (jeff.rinda@hospira.com) |
+|address(es):                        |                                    |
+|Submission Date:                    |04/09/2014                          |
+|Integration Profile(s) affected:    |PIV – Point-of-care Infusion        |
+|                                    |Verification                        |
+|Actor(s) affected:                  |Infusion Order Programmer (IOP),    |
+|                                    |Infusion Order Consumer (IOC)       |
+|IHE Technical Framework or          |3.0 (2013-10-11)                    |
+|Supplement modified:                |                                    |
+|Volume(s) and Section(s) affected:  |Vol. 1 - Glossary, Vol. 2 – multiple|
+|                                    |sections (see below), Pump Error    |
+|                                    |Codes reference table               |
+|Rationale for Change:                                                     |
+|These updates provide support for patient controlled analgesia (PCA)      |
+|devices and to support dose-based infusions (i.e. dose over time).  Other |
+|minor updates and editorial changes are also included.                    |
+
+
+Note: red font indicates proposed text.
+
+
+Volume 1 – Glossary
+Proposed:
+Add the following definitions:
+PCA - patient controlled analgesia; used to refer to an infusion device
+which is specialized for the delivery of PCA therapy
+LVP – large volume pump; a general purpose infusion device which can
+deliver medications contained in a bag, bottle, or other container
+Syringe pump – an infusion device which is specialized for the delivery of
+medications contained in a syringe
+
+Volume 2
+Section 3.3 PCD-03 Communicate Infusion Order
+Current text:
+Note: see related detail on infusion pump device models and data models in
+the Device Specialization – Infusion Pump
+PCD profiles for large volume pumps, syringe pumps and patient controlled
+analgesia.
+Proposed text:
+Note: see related detail on infusion pump device models and data models in
+the Device Specialization – Infusion Pump
+PCD profiles for large volume, syringe, and patient controlled analgesia
+(PCA) pumps.
+
+      Table 3.3.4.2-1: RGV^O15^RGV_O15 Pharmacy/Treatment Give Message
+|Segment           |Meaning                          |Usage  |Card   |HL7 Chapter |
+|MSH               |Message Header                   |R      |[1..1] |2           |
+|[{ SFT }]         |Software                         |X      |       |2           |
+|[{ NTE }]         |Notes and Comments (for Header)  |X      |       |2           |
+|[                 |--- PATIENT begin                |       |       |            |
+|      PID         |Patient Identification           |R      |[1..1] |3           |
+|   [{ NTE }]      |Notes and Comments (for PID)     |X      |       |2           |
+|   [{ AL1 }]      |Allergy Information              |X      |       |2           |
+|   [              |--- PATIENT_VISIT begin          |       |       |            |
+|         PV1      |Patient Visit                    |O      |[0..1] |3           |
+|      [  PV2  ]   |Patient Visit – Additional Info  |X      |       |3           |
+|   ]              |--- PATIENT_VISIT end            |       |       |            |
+|]                 |--- PATIENT end                  |       |       |            |
+|{                 |--- ORDER begin                  |       |       |            |
+|      ORC         |Common Order                     |R      |[1..1] |4           |
+|   [{             |--- TIMING begin                 |       |       |            |
+|         TQ1      |Timing/Quantity                  |X      |       |4           |
+|      [{ TQ2 }]   |Timing/Quantity Order Sequence   |X      |       |4           |
+|   }]             |--- TIMING end                   |       |       |            |
+|   [              |--- ORDER_DETAIL begin           |       |       |            |
+|         RXO      |Pharmacy /Treatment Order        |X      |       |4           |
+|      [           |--- ORDER_DETAIL_SUPPLEMENT begin|       |       |            |
+|         {  NTE  }|Notes and Comments (for RXO)     |X      |       |2           |
+|         {  RXR  }|Pharmacy/Treatment Route         |X      |       |4           |
+|         [{       |--- COMPONENTS begin             |       |       |            |
+|               RXC|Pharmacy/Treatment Component     |X      |       |4           |
+|            [{ NTE|Notes and Comments (for each RXC)|X      |       |2           |
+|}]                |                                 |       |       |            |
+|         }]       |--- COMPONENTS end               |       |       |            |
+|      ]           |--- ORDER_DETAIL_SUPPLEMENT end  |       |       |            |
+|   ]              |--- ORDER_DETAIL end             |       |       |            |
+|   [              |--- ENCODING begin               |       |       |            |
+|         RXE      |Pharmacy/Treatment Encoded Order |X      |       |4           |
+|      {           |--- TIMING_ENCODED begin         |       |       |            |
+|            TQ1   |Timing/Quantity                  |X      |       |4           |
+|         [{ TQ2 }]|Timing/Quantity Order Sequence   |X      |       |4           |
+|      }           |--- TIMING_ENCODED end           |       |       |            |
+|      {  RXR  }   |Pharmacy/Treatment Route         |X      |       |4           |
+|      [{ RXC }]   |Pharmacy/Treatment Component     |X      |       |4           |
+|   ]              |--- ENCODING end                 |       |       |            |
+|   {              |--- GIVE begin                   |       |       |            |
+|         RXG      |Pharmacy/Treatment Give          |R      |[1..1] |4           |
+|      {           |--- TIMING_GIVE begin            |       |       |            |
+|            TQ1   |Timing/Quantity                  |O      |[0..1] |4           |
+|         [{ TQ2 }]|Timing/Quantity Order Sequence   |X      |       |4           |
+|      }           |--- TIMING_GIVE end              |       |       |            |
+|      {  RXR  }   |Pharmacy/Treatment Route         |R      |[1..1] |4           |
+|      [{ RXC }]   |Pharmacy/Treatment Component     |X      |       |4           |
+|      {           |--- OBSERVATION begin            |       |       |            |
+|         [  OBX  ]|Observation/Results              |R      |[1..4] |7           |
+|                  |                                 |       |[1..n] |            |
+|         [{ NTE }]|Notes and Comments (for OBX)     |X      |       |2           |
+|      }           |--- OBSERVATION end              |       |       |            |
+|   }              |--- GIVE end                     |       |       |            |
+|}                 |--- ORDER end                    |       |       |            |
+
+
+
+   Table 3.3.4.4.5-1: HL7 Attribute Table – RXG – Pharmacy/Treatment Give
+|SEQ  |LEN   |DT   |Usage  |Card.   |TBL#   |ITEM # |ELEMENT NAME          |
+|1    |4     |NM   |R      |[1..1]  |       |00342  |Give Sub-ID Counter   |
+|2    |4     |NM   |RE     |[0..1]  |       |00334  |Dispense Sub-ID       |
+|     |      |     |       |        |       |       |Counter               |
+|3    |705   |TQ   |X      |[0..0]  |       |00221  |Quantity/Timing       |
+|4    |705   |CWE  |R      |[1..1]  |0292   |00317  |Give Code             |
+|5    |20    |NM   |R CE   |[1..1]  |       |00318  |Give Amount - Minimum |
+|     |      |     |       |[0..1]  |       |       |                      |
+|6    |20    |NM   |RE     |[0..1]  |       |00319  |Give Amount - Maximum |
+|7    |705   |CWE  |R CE   |[1..1]  |       |00320  |Give Units            |
+|     |      |     |       |[0..1]  |       |       |                      |
+|8    |705   |CWE  |RE     |[0..1]  |       |00321  |Give Dosage Form      |
+|9    |705   |CWE  |RE     |[0..*]  |       |00351  |Administration Notes  |
+|10   |1     |ID   |RE     |[0..1]  |0167   |00322  |Substitution Status   |
+|11   |200   |LA2  |RE     |[0..1]  |       |01303  |Dispense-To Location  |
+|12   |1     |ID   |RE     |[0..1]  |0136   |00307  |Needs Human Review    |
+|13   |705   |CWE  |RE     |[0..*]  |       |00343  |Pharmacy/Treatment    |
+|     |      |     |       |        |       |       |Supplier's Special    |
+|     |      |     |       |        |       |       |Administration        |
+|     |      |     |       |        |       |       |Instructions          |
+|14   |20    |ST   |RE     |[0..1]  |       |00331  |Give Per (Time Unit)  |
+|15   |6     |ST   |R CE   |[1..1]  |       |00332  |Give Rate Amount      |
+|     |      |     |       |[0..1]  |       |       |                      |
+|16   |705   |CWE  |R CE   |[1..1]  |       |00333  |Give Rate Units       |
+|     |      |     |       |[0..1]  |       |       |                      |
+|17   |20    |NM   |RE     |[0..1]  |       |01126  |Give Strength         |
+|18   |705   |CWE  |RE     |[0..1]  |       |01127  |Give Strength Units   |
+|19   |20    |ST   |RE     |[0..*]  |       |01129  |Substance Lot Number  |
+|20   |24    |DTM  |RE     |[0..*]  |       |01130  |Substance Expiration  |
+|     |      |     |       |        |       |       |Date                  |
+|21   |705   |CWE  |RE     |[0..*]  |0227   |01131  |Substance Manufacturer|
+|     |      |     |       |        |       |       |Name                  |
+|22   |705   |CWE  |RE     |[0..*]  |       |01123  |Indication            |
+|23   |5     |NM   |RE     |[0..1]  |       |01692  |Give Drug Strength    |
+|     |      |     |       |        |       |       |Volume                |
+|24   |705   |CWE  |RE     |[0..1]  |       |01693  |Give Drug Strength    |
+|     |      |     |       |        |       |       |Volume Units          |
+|25   |60    |CWE  |RE     |[0..1]  |       |01694  |Give Barcode          |
+|     |      |     |       |        |       |       |Identifier            |
+|26   |1     |ID   |RE     |[0..1]  |0480   |01695  |Pharmacy Order Type   |
+|27   |705   |CWE  |X      |[0..0]  |       |01688  |Dispense to Pharmacy  |
+|28   |106   |XAD  |X      |[0..0]  |       |01689  |Dispense to Pharmacy  |
+|     |      |     |       |        |       |       |Address               |
+|29   |80    |PL   |X      |[0..0]  |       |01683  |Deliver-to Patient    |
+|     |      |     |       |        |       |       |Location              |
+|30   |250   |XAD  |X      |[0..0]  |       |01684  |Deliver-to Address    |
+
+
+RXG-5 Give Amount – Minimum
+Current text:
+Definition: This field contains the volume of fluid to be administered
+(VTBI). This volume is the actual fluid volume that the clinician intends
+to administer (not necessarily the volume of the bag).
+Proposed text:
+Definition: This field contains the volume of fluid to be administered
+(VTBI). This volume is the actual fluid volume that the clinician intends
+to administer (not necessarily the volume contained in the bag, bottle,
+syringe, or other fluid container).
+Required for LVP when TQ1 segment is not present; Optional for PCA and
+Syringe.
+
+RXG-7 Give Units
+Current text:
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)>
+^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate
+Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding
+System Version ID (ST)> ^ <Original Text (ST)>
+
+
+Definition: This field contains the coded units for the Give Amount. The
+preferred format is an MDC value; UCUM values are also acceptable.
+
+The PCD TF requires that the first three components of RXG-7 contain one of
+the following sets of values:
+• 263762^MDC_DIM_MILLI_L^MDC
+• mL^mL^UCUM
+
+Proposed text:
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)>
+^
+<Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate
+Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding
+System Version ID (ST)> ^ <Original Text (ST)>
+Definition: This field contains the coded units for the Give Amount. The
+preferred format is an MDC value; UCUM values are also acceptable.
+Required for LVP when TQ1 segment is not present; Optional for PCA and
+Syringe.
+The PCD TF requires that the first three components of RXG-7 contain one of
+the following sets
+of values:
+• 263762^MDC_DIM_MILLI_L^MDC
+• mL^mL^UCUM
+
+RXG-15 Give Rate Amount
+Current text:
+
+Definition: This field contains the numeric portion of the rate or dose to
+be administered. If the infusion requires a dosed value, such as dopamine
+at 5 mcg/kg/min, this field contains the dose value amount (e.g., “5"). If
+it does not, such as normal saline at 75 mL/hr, then this field contains
+the rate value (e.g., "75").
+
+Proposed text:
+Definition: This field contains the numeric portion of the rate, dose rate,
+or dose amount to be administered.
+If the infusion order specifies a rate, such as normal saline at 75 mL/hr,
+then this field contains the rate value amount (e.g., "75").
+If the infusion order specifies a dose rate, such as dopamine at 5
+mcg/kg/min, this field contains the dose rate value amount (e.g., “5").
+If the infusion order specifies a dose amount, such as 2 g, this field
+contains the dose value amount (e.g. “2”).
+Required for LVP and Syringe; Optional for PCA.  If present for PCA,
+contains the basal or continuous rate value.
+
+RXG-16 Give Rate Units
+Current text:
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)>
+^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate
+Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding
+System Version ID (ST)> ^ <Original Text (ST)>
+
+
+Definition: This field contains the coded version of the units portion of
+the rate or dose to be administered. If the infusion requires a dosed
+value, such as dopamine at 5 mcg/kg/min, this field represents the dose
+units (e.g., "mcg/kg/min"). If it does not, such as normal saline at 75
+mL/hr, then this field represents the rate units (e.g., "mL/hr"). The
+preferred format is an MDC value; UCUM values are also acceptable.
+
+Examples:
+
+265266^MDC_DIM_MILLI_L_PER_HR^MDC
+265619^MDC_DIM_MICRO_G_PER_KG_PER_MIN^MDC
+ml/h^ml/h^UCUM
+ug/kg/min^ug/kg/min^UCUM
+
+Proposed text:
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)>
+^
+<Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate
+Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding
+System Version ID (ST)> ^ <Original Text (ST)>
+Definition: This field contains the coded version of the units portion of
+the rate, dose rate, or dose to be administered.
+If the infusion order specifies a rate, such as normal saline to infuse at
+75 mL/hr, this field represents the rate units (e.g., "mL/hr").
+If the infusion order specifies a dose rate, such as dopamine to infuse at
+5 mcg/kg/min, this field represents the dose rate units (e.g.,
+"mcg/kg/min").
+If the infusion order specifies a dose, such as ceftriaxone 2 g, this field
+represents the dose units (e.g. “g”).
+When a dose is specified the TQ1 segment must be present to indicate the
+time period that the dose is to be infused over.
+The preferred format is an MDC value; UCUM values are also acceptable.
+Required for LVP and Syringe; Optional for PCA.  If present for PCA,
+contains the basal or continuous rate units value.
+Examples:
+265266^MDC_DIM_MILLI_L_PER_HR^MDC
+265619^MDC_DIM_MICRO_G_PER_KG_PER_MIN^MDC
+263872^MDC_DIM_X_G^MDC
+ml/h^ml/h^UCUM
+ug/kg/min^ug/kg/min^UCUM
+g^g^UCUM
+
+
+   Table 3.3.4.4.7-1: HL7 Attribute Table – RXR – Pharmacy/Treatment Route
+|SEQ   |LEN    |DT   |Usage  |Card. |TBL#    |ITEM #  |ELEMENT NAME          |
+|1     |705    |CWE  |R      |[1..1]|0162    |00309   |Route                 |
+|2     |705    |CWE  |RE     |[0..1]|0550    |00310   |Administration Site   |
+|3     |705    |CWE  |RE     |[0..1]|0164    |00311   |Administration Device |
+|4     |705    |CWE  |R CE   |[1..1]|0165    |00312   |Administration Method |
+|      |       |     |       |[0..1]|        |        |                      |
+|5     |705    |CWE  |RE     |[0..1]|        |01315   |Routing Instruction   |
+|6     |705    |CWE  |RE     |[0..1]|0495    |01670   |Administration Site   |
+|      |       |     |       |      |        |        |Modifier              |
+
+RXR-3 Administration Device
+Current text:
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)>
+^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate
+Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding
+System Version ID (ST)> ^ <Original Text (ST)>
+
+
+Definition: This field contains the type of pump used to administer the
+drug, if known by the BCMA system. The PCD TF requires that this field be
+valued as ^IVP^HL70164 for general infusion devices or ^SYR^HL70164 for
+syringe pump devices, if the type of pump is known.
+
+The following entry should be added to user-defined table #0164:
+|Value                            |Description                       |
+|SYR                              |Syringe Pump                      |
+
+Proposed text:
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)>
+^
+<Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate
+Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding
+System Version ID (ST)> ^ <Original Text (ST)>
+Definition: This field contains the type of pump used to administer the
+drug, if known by the BCMA system. The PCD TF requires that this field be
+valued as ^IVP^HL70164 for LVP and PCA or ^SYR^HL70164 for Syringe pumps.
+
+The following entry should be added to user-defined table #0164:
+|Value                            |Description                       |
+|SYR                              |Syringe Pump                      |
+
+
+RXR-4 Administration Method
+Current text:
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)>
+^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate
+Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding
+System Version ID (ST)> ^ <Original Text (ST)>
+
+
+Definition: This field identifies whether the infusion is to be
+administered as a primary infusion or as an IV piggyback or secondary
+infusion. The TF requires that this field be valued as ^IV^HL70165 for a
+primary infusion or ^IVPB^HL70165 for an IV piggyback or secondary
+infusion.
+
+The following entry should be added to user-defined table #0165:
+|Value                            |Description                       |
+|IV                               |IV Primary                        |
+
+
+Proposed text:
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)>
+^
+<Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate
+Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding
+System Version ID (ST)> ^ <Original Text (ST)>
+Definition: This field identifies whether the infusion is to be
+administered as a primary infusion
+or as an IV piggyback or secondary infusion. The TF requires that this
+field be valued as
+^IV^HL70165 for a primary infusion or ^IVPB^HL70165 for an IV piggyback or
+secondary infusion.  This field is Optional for PCA.
+
+The following entry should be added to user-defined table #0165:
+|Value                            |Description                       |
+|IV                               |IV Primary                        |
+
+
+3.3.4.4.9 OBX - Observation/Result segment
+Current text:
+
+Refer to HL7 v2.6: Section 7.4.2
+
+The HL7 OBX segment is used to transmit a single observation or observation
+fragment. In the Point-of-Care Infusion Verification Profile the usage is
+limited to (1) providing the Device ID that will be used by the Infusion
+Order Consumer and (2) providing patient height, weight, or Body Surface
+Area (BSA) information from the Infusion Order Programmer to the Infusion
+Order Consumer. Note that the definition of the OBX segment in this profile
+is constrained from the definition used in the PCD Observation/Result
+Message to reflect this limited usage. The broader definition can be found
+in Error: Reference source not found, Appendix Section B-8.
+
+One OBX segment containing the Device ID must always be present. One to
+three additional OBX segments containing the patient height and/or patient
+weight and/or patient BSA may optionally follow.
+
+Proposed text:
+Refer to HL7 v2.6: Section 7.4.2
+
+The HL7 OBX segment is used to transmit a single observation or observation
+fragment. In the
+Point-of-Care Infusion Verification Profile the usage is limited to
+providing:
+(1) pump ID
+(2) patient parameters such as height, weight, or body surface area (BSA)
+(3) other parameters used to program the pump.
+
+Note that the definition of the OBX segment in this profile is constrained
+from the definition used in the PCD Observation/Result Message to reflect
+this limited usage. The broader definition can be found in OBX -
+Observation/Result segment, Appendix Section B-8.
+
+One OBX segment containing the pump ID must always be present. Additional
+OBX segments containing patient parameters or pump programming parameters
+may optionally follow.
+
+The OBX table is reproduced below for convenience – no changes are needed.
+
+                       Table 3.3.4.4.8-1: OBX segment
+|SEQ  |LEN  |DT    |Usage  |Card. |TBL#  |Element name          |
+|1    |4    |SI    |R      |[1..1]|      |Set ID – OBX          |
+|2    |3    |ID    |CE     |[0..1]|0125  |Value Type            |
+|3    |705  |CWE   |R      |[1..1]|      |Observation Identifier|
+|4    |20   |ST    |RE     |[1..1]|      |Observation Sub-ID    |
+|5    |99999|Varies|CE     |[0..1]|      |Observation Value     |
+|6    |705  |CWE   |CE     |[0..1]|      |Units                 |
+|7    | 60  |ST    |RE     |[0..1]|      |References Range      |
+|8    |5    |IS    |RE     |[0..1]|0078  |Abnormal Flags        |
+|9    |5    |NM    |X      |[0..0]|      |Probability           |
+|10   |2    |ID    |RE     |[0..1]|0080  |Nature of Abnormal    |
+|     |     |      |       |      |      |Test                  |
+|11   |1    |ID    |RE     |[1..1]|0085  |Observation Result    |
+|     |     |      |       |      |      |Status                |
+|12   |24   |DTM   |X      |[0..0]|      |Effective Date of     |
+|     |     |      |       |      |      |Reference Range       |
+|13   |20   |ST    |X      |[0..0]|      |User Defined Access   |
+|     |     |      |       |      |      |Checks                |
+|14   |24   |DTM   |RE     |[0..1]|      |Date/Time of the      |
+|     |     |      |       |      |      |Observation           |
+|15   |705  |CWE   |RE     |[0..1]|      |Producer's ID         |
+|16   |3220 |XCN   |RE     |[0..1]|      |Responsible Observer  |
+|17   |705  |CWE   |RE     |[0..1]|      |Observation Method    |
+|18   |427  |EI    |CE     |[0..1]|      |Equipment Instance    |
+|     |     |      |       |      |      |Identifier            |
+|19   |24   |DTM   |RE     |[0..1]|      |Date/Time of the      |
+|     |     |      |       |      |      |Analysis              |
+|20   |705  |CWE   |RE     |[0..*]|0163  |Observation Site      |
+
+OBX-2 Value Type
+Current text:
+The PCD PIV profile restricts this value to NM if OBX-3 refers to weight or
+height, or empty if OBX-3 refers to a pump ID.
+Proposed text:
+The PCD PIV profile constrains this field as follows:
+If OBX-3 refers to a pump ID this field must be empty.
+If OBX-3 refers to a patient parameter this value is restricted to NM.
+If OBX-3 refers to a pump programming parameter, this value should identify
+the data type of the value in OBX-5 Observation Value.
+
+OBX-3 Observation Identifier
+Current text:
+
+The PCD PIV profile constrains the value of this field to one of the
+following:
+68063^MDC_ATTR_PT_WEIGHT^MDC
+68060^MDC_ATTR_PT_HEIGHT^MDC
+69986^MDC_DEV_PUMP_INFUS_VMD^MDC
+57672^MDC_AREA_BODY_SURF_ACTUAL^MDC
+
+Proposed text:
+
+The PCD PIV profile constrains the value of this field to one of the
+following:
+Pump ID
+69986^MDC_DEV_PUMP_INFUS_VMD^MDC
+
+Patient parameter
+68063^MDC_ATTR_PT_WEIGHT^MDC
+68060^MDC_ATTR_PT_HEIGHT^MDC
+57672^MDC_AREA_BODY_SURF_ACTUAL^MDC
+
+Pump programming parameter
+157985^MDC_DOSE_PCA_LIMIT^MDC
+157986^MDC_VOL_PCA_DOSE_LIMIT^MDC
+157987^MDC_TIME_PD_PCA_DOSE_LIMIT^MDC
+157988^MDC_RATE_PCA_MAX_DOSES_PER_HOUR^MDC
+157989^MDC_TIME_PCA_LOCKOUT^MDC
+157994^MDC_VOL_FLUID_CONTAINER_START
+Xxxxxx^MDC_DOSE_PCA_PATIENT
+Xxxxxx^MDC_DOSE_CLINICIAN
+Xxxxxx^MDC_DOSE_LOADING
+(NOTE: Code assignments are pending for last three terms)
+
+
+
+OBX-5 Observation Value
+Current text:
+If OBX-3 refers to weight or height, then this field contains the weight or
+height value, respectively. If OBX-3 refers to the pump ID, this field must
+be empty.
+Proposed text:
+If OBX-3 refers to a pump ID, this field must be empty.
+If OBX-3 refers to a patient parameter, this field contains the parameter
+value.
+If OBX-3 refers to a pump programming parameter, this field contains the
+parameter value.
+
+OBX-6 Units
+Current text:
+
+The PCD PIV profile constrains the value of this field based on the value
+in OBX-3.
+
+If OBX-3 refers to weight, this field contains the coded units for the
+weight. The preferred format is an MDC value; UCUM values are also
+acceptable. When OBX-3 refers to weight, the first three components of OBX-
+6 must contain one of the following sets of values:
+263872^MDC_DIM_G^MDC
+263875^MDC_DIM_KILO_G^MDC
+g^g^UCUM
+kg^kg^UCUM
+
+If OBX-3 refers to height, this field contains the coded units for the
+height. The preferred format is an MDC value; UCUM values are also
+acceptable. When OBX-3 refers to height, the first three components of OBX-
+6 must contain one of the following sets of values:
+263441^MDC_DIM_CENTI_M^MDC
+cm^cm^UCUM
+
+If OBX-3 refers to a pump ID, this field must be empty.
+
+Proposed text:
+The PCD PIV profile constrains the value of this field based on the value
+in OBX-3.
+If OBX-3 refers to a pump ID, this field must be empty.
+If OBX-3 refers to a patient parameter, this field contains the coded units
+for the parameter. The preferred format is an MDC value; UCUM values are
+also acceptable.
+When OBX-3 refers to weight, the first three components of OBX-6 must
+contain one of the following sets of values:
+263872^MDC_DIM_G^MDC
+263875^MDC_DIM_KILO_G^MDC
+g^g^UCUM
+kg^kg^UCUM
+When OBX-3 refers to height, the first three components of OBX-6 must
+contain one of the following sets of values:
+263441^MDC_DIM_CENTI_M^MDC
+cm^cm^UCUM
+When OBX-3 refers to BSA, the first three components of OBX-6 must contain
+one of the following sets of values:
+263616^ MDC_DIM_SQ_X_M^MDC
+m2^m2^UCUM
+If OBX-3 refers to a pump programming parameter, this field contains the
+units for the value in OBX-5 Observation Value.
+
+OBX-18 Equipment Instance Identifier
+Current text:
+
+See Appendix Section B.8 for description of usage of OBX-18.
+
+For backward compatibility, the OBX-18 convention used in previous Trial
+Implementation versions of the Point-of-Care Infusion Verification
+Supplement may be used by agreement between sending and receiving systems,
+but this usage is deprecated and should not be used in new systems. The
+former language is reproduced here: "If OBX-3 refers to the pump ID, the ID
+is placed in the ‘Universal ID’ component (EI-3), and the device or
+manufacturer name is placed in the ‘Universal ID Type’ component (EI-4).
+The pump ID is a unique alphanumeric identifier and may optionally include
+the pump channel. The format of the identifier is vendor-specific. A
+typical value could be a serial number for a single-channel pump, or a
+serial number followed by the channel number or letter for a multi-channel
+pump. Note that this specification differs from the usage of OBX-18 in IHE
+PCD DEC profiles."
+
+New applications should conform to the general specification for OBX-18
+(Appendix section B.8). The pump ID (vendor-specific format, which may
+optionally include the pump channel as before) should be placed in EI-1,
+and EI-3 and EI-4 should identify the manufacturer of the pump according to
+an accepted Universal ID system.
+
+If OBX-3 refers to weight or height, this field must be empty.
+
+Proposed text:
+See Appendix section B.8 for description of usage of OBX-18.
+If OBX-3 refers to a pump ID, the following applies.
+For backward compatibility, when used to contain a pump ID, the OBX-18
+convention used in previous Trial Implementation versions of the Point-of-
+Care Infusion Verification Supplement may be used by agreement between
+sending and receiving systems, but this usage is deprecated and should not
+be used in new systems. The former language is reproduced here: "If OBX-3
+refers to the pump ID, the ID is placed in the ‘Universal ID’ component (EI-
+3), and the device or manufacturer name is placed in the ‘Universal ID
+Type’ component (EI-4). The pump ID is a unique alphanumeric identifier and
+may optionally include the pump channel. The format of the identifier is
+vendor-specific. A typical value could be a serial number for a single-
+channel pump, or a serial number followed by the channel number or letter
+for a multi-channel pump. Note that this specification differs from the
+usage of OBX-18 in IHE PCD DEC profiles."
+New applications should conform to the general specification for OBX-18
+(Appendix section B.8). The pump ID (vendor-specific format, which may
+optionally include the pump channel as before) should be placed in EI-1,
+and EI-3 and EI-4 should identify the manufacturer of the pump according to
+an accepted Universal ID system.
+If OBX-3 refers to a patient parameter this field must be empty.
+If OBX-3 refers to a pump programming parameter this field must be empty.
+
+
+
+Expected Actions
+
+Current text:
+Once the programming information is received by the pump, the clinician may
+choose to do one of the following: (1) confirm the settings on the pump and
+then start the infusion, (2) enter or modify one or more settings and then
+start the infusion, or (3) cancel the program altogether.
+
+Proposed text:
+
+Once the programming information is received by the pump, the clinician may
+choose to do one of the following: (1) confirm the settings on the pump and
+then start the infusion, (2) enter or modify one or more settings and then
+start the infusion, or (3) reject the program before it is started.
+
+
+
+Updates to Pump Error Codes
+
+Proposed:
+Add new error code
+Value – 9023
+Description - Program rejected by user
+Comment - Program rejected by user prior to starting infusion
+
+Update Description for error code 9016
+Current:  “Unknown error”
+Proposed: "Other error"
+
+

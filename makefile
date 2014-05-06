@@ -1,8 +1,8 @@
 .PHONY: clean
 DOCS := \
 	CP-PCD-051-00.doc \
-	CP-PCD-052-00.doc  \
-	CP-PCD-053-00.doc  \
+	CP-PCD-052-00.doc \
+	CP-PCD-053-00.doc \
 	CP-PCD-053-MiscTFUpdates-20110603.doc \
 	CP-PCD-054-00.doc \
 	CP-PCD-054-RequireORC9forPCD03-20110603.doc \
@@ -44,22 +44,25 @@ DOCS := \
 	CP-PCD-085-04.doc \
 	CP-PCD-086-00.doc \
 	CP-PCD-087-04.doc \
+	CP-PCD-087-05_to_ACM_TI_2013-01-10.doc \
 	CP-PCD-088-00.doc \
 	CP-PCD-089-00-Support_programming_an_infusion_rate_or_dose_change.doc \
 	CP-PCD-089-01-Support_programming_an_infusion_rate_or_dose_change.doc \
 	CP-PCD-091-00-HeaderACK.doc \
-	CP-PCD-092-03 Change Alarm CM to Alert CM to ACM.doc \
-	CP-PCD-092-04 Change Alarm CM to Alert CM to ACM.doc \
-	CP-PCD-093-03 Add 11073 Distinctive References to ACM.doc \
-	CP-PCD-093-04 Add 11073 Distinctive References to ACM.doc \
+	CP-PCD-092-03_Change_Alarm_CM_to_Alert_CM_to_ACM.doc \
+	CP-PCD-092-04_Change_Alarm_CM_to_Alert_CM_to_ACM.doc \
+	CP-PCD-093-03_Add_11073_Distinctive_References_to_ACM.doc \
+	CP-PCD-093-04_Add_11073_Distinctive_References_to_ACM.doc \
 	CP-PCD-094-00-IPEC_update.doc \
 	CP-PCD-097-00.doc \
+	CP-PCD-097-00[1].doc \
 	CP-PCD-097-01.doc \
-	CP-PCD-098-00 ACM Profile Alert Consumer Actor Addition.doc \
-	CP-PCD-099-00 Support programming an infusion rate or dose change.doc \
-	CP-PCD-100 PIV updates for PCA and dose-based infusions.doc \
-	CP-PCD-101_EUI-64 Language Updates.doc \
-	CP-PCD-102_DEC CP NK1 Segment.doc
+	CP-PCD-097-01_Clarify_Usage_of_OBX-4.doc \
+	CP-PCD-098-00_ACM_Profile_Alert_Consumer_Actor_Addition.doc \
+	CP-PCD-099-00_Support_programming_an_infusion_rate_or_dose_change.doc \
+	CP-PCD-100_PIV_updates_for_PCA_and_dose-based_infusions.doc \
+	CP-PCD-101_EUI-64_Language_Updates.doc \
+	CP-PCD-102_DEC_CP_NK1_Segment.doc \
 
 TXTS :=	$(subst .doc,.txt,$(DOCS))
 

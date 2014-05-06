@@ -1,0 +1,49 @@
+
+
+                             IHE Change Proposal
+
+
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-102-00                       |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |April 30, 2014                      |
+|Person assigned:                    |Lisa Nelson, John Rhoads            |
+
+                    Change Proposal Summary information:
+|Modify PCD-01 NK1 Segment                                                 |
+|Submitter’s Name(s) and e-mail      |Lisa Nelson  (LisaRNelson@cox.net)  |
+|address(es):                        |                                    |
+|Submission Date:                    |April 30, 2014                      |
+|Integration Profile(s) affected:    |Device Enterprise Communication     |
+|                                    |(DEC)                               |
+|Actor(s) affected:                  |Device Observation Reporter, Device |
+|                                    |Observation Filter,                 |
+|                                    |Device Observation Consumer         |
+|IHE Technical Framework or          |PCD Technical Framework             |
+|Supplement modified:                |                                    |
+|Volume(s) and Section(s) affected:  |Volume 2, Section 3.1.4.1.1         |
+|Rationale for Change:                                                     |
+|When transmitting information for a baby, minor, or elderly person where  |
+|it is important to include information about a responsible party, use of  |
+|the NK1 segment is needed to represent the information associated with the|
+|responsible party. To address these use cases, the NK1 segment needs to be|
+|Optional (O) and the cardinality needs to support zero or more responsible|
+|parties.                                                                  |
+|Previously, the DEC profile did not have a use case requiring this        |
+|segment. Thus the DEC profile currently prohibits the use of the NK1      |
+|segment. The EHDI profile has emerged with a use case where the NK1 is    |
+|needed. The proposed change would thus allow the EHDI profile to require  |
+|(RE) the use of this segment.                                             |
+
+Revise Section 3.1.4.1.1 to make the following modification to Table
+3.1.4.1.1-1: ORU^R01^ORU_R01 static definition
+
+
+..[{NK1}] Next of Kin/Associated Parties X [0..0] 3
+
+
+
+..[{NK1}] Next of Kin/Associated Parties O [0..*] 3
