@@ -1,0 +1,35 @@
+
+
+
+Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-078-00                       |
+|Change Proposal Status:             |Ballot                              |
+|Date of last update:                |2012-06-08                          |
+|Person assigned:                    |John Rhoads                         |
+
+Change Proposal Summary information:
+|PID 5.7 not restricted to "U" or "L"                                      |
+|Submitter’s Name(s) and e-mail      |                                    |
+|address(es):                        |                                    |
+|Submission Date:                    |2012-06-08                          |
+|Integration Profile(s) affected:    |General                             |
+|Actor(s) affected:                  |General                             |
+|IHE Technical Framework or          |IHE Patient Care Device (PCD)       |
+|Supplement modified:                |Technical Framework; Volume 2;      |
+|                                    |Revision 1.0; August 12, 2011       |
+|Volume(s) and Section(s) affected:  |Volume 2, Appendix B, Section 5.    |
+|Rationale for Change:                                                     |
+|                                                                          |
+|PID 5.7 not restricted to "U" or "L", but can be anything in HL7 Table    |
+|200. The previous text does not make this clear.                          |
+
+
+PID-5   Patient Name
+
+Definition: This field contains the names of the patient, the primary or
+legal name of the patient is reported first. Therefore, the name type code
+in this field should be "L - Legal" if such a name is available. If no name
+is available, the name type code should be "U – unspecified", and the other
+components should be empty. Refer to C.8-2 All other codes in HL7 Table
+0200 – Name Type are also acceptable for valid values.

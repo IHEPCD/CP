@@ -1,0 +1,123 @@
+
+
+                             IHE Change Proposal
+
+
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Device (PCD)           |
+|Change Proposal ID:                 |CP-PCD-056-01                       |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |12April2011                         |
+|Person assigned:                    |                                    |
+
+                    Change Proposal Summary information:
+|Including BSA as an OBX-3 Observation Identifier                          |
+|Submitter’s Name(s) and e-mail      |Brad Lunde,                         |
+|address(es):                        |bradley.lunde@carefusion.com        |
+|Submission Date:                    |11April2011                         |
+|Integration Profile(s) affected:    |PCD                                 |
+|Actor(s) affected:                  |IOP and IOC                         |
+|IHE Technical Framework or          |Revision 1.2; Spetember 30, 2010    |
+|Supplement modified:                |                                    |
+|Volume(s) and Section(s) affected:  |Volume 2; Section 3.3.4.x.x lines   |
+|                                    |585-590, lines 880-887 and lines    |
+|                                    |900-905                             |
+|Rationale for Change:                                                     |
+|There are 5 accepted algorithms of calculation BSA based on the height and|
+|weight; hospitals can choose to use a combination of all 5 algorithms     |
+|based on the area of care.  This situaiton could lead to the the IOP and  |
+|the IOC each calculating the BSA differently which in turn would cause the|
+|infusion pump to administer a dose incorrectly to the patient.            |
+|MDC_AREA_BODY_SURF_ACTUAL is an ISO 11073 defined term                    |
+
+
+In section 3.3.4.2 update table between lines 585 and 590 with the
+following:
+
+|Segment           |Meaning                          |Usage  |Card   |HL7 Chapter |
+|MSH               |Message Header                   |R      |[1..1] |2           |
+|[{ SFT }]         |Software                         |X      |       |2           |
+|[{ NTE }]         |Notes and Comments (for Header)  |X      |       |2           |
+|[                 |--- PATIENT begin                |       |       |            |
+|      PID         |Patient Identification           |R      |[1..1] |3           |
+|   [{ NTE }]      |Notes and Comments (for PID)     |X      |       |2           |
+|   [{ AL1 }]      |Allergy Information              |X      |       |2           |
+|   [              |--- PATIENT_VISIT begin          |       |       |            |
+|         PV1      |Patient Visit                    |O      |       |3           |
+|      [  PV2  ]   |Patient Visit – Additional Info  |X      |       |3           |
+|   ]              |--- PATIENT_VISIT end            |       |       |            |
+|]                 |--- PATIENT end                  |       |       |            |
+|{                 |--- ORDER begin                  |       |       |            |
+|      ORC         |Common Order                     |R      |[1..1] |4           |
+|   [{             |--- TIMING begin                 |       |       |            |
+|         TQ1      |Timing/Quantity                  |X      |       |4           |
+|      [{ TQ2 }]   |Timing/Quantity Order Sequence   |X      |       |4           |
+|   }]             |--- TIMING end                   |       |       |            |
+|   [              |--- ORDER_DETAIL begin           |       |       |            |
+|         RXO      |Pharmacy /Treatment Order        |X      |       |4           |
+|      [           |--- ORDER_DETAIL_SUPPLEMENT begin|       |       |            |
+|         {  NTE  }|Notes and Comments (for RXO)     |X      |       |2           |
+|         {  RXR  }|Pharmacy/Treatment Route         |X      |       |4           |
+|         [{       |--- COMPONENTS begin             |       |       |            |
+|               RXC|Pharmacy/Treatment Component     |X      |       |4           |
+|            [{ NTE|Notes and Comments (for each RXC)|X      |       |2           |
+|}]                |                                 |       |       |            |
+|         }]       |--- COMPONENTS end               |       |       |            |
+|      ]           |--- ORDER_DETAIL_SUPPLEMENT end  |       |       |            |
+|   ]              |--- ORDER_DETAIL end             |       |       |            |
+|   [              |--- ENCODING begin               |       |       |            |
+|         RXE      |Pharmacy/Treatment Encoded Order |X      |       |4           |
+|      {           |--- TIMING_ENCODED begin         |       |       |            |
+|            TQ1   |Timing/Quantity                  |X      |       |4           |
+|         [{ TQ2 }]|Timing/Quantity Order Sequence   |X      |       |4           |
+|      }           |--- TIMING_ENCODED end           |       |       |            |
+|      {  RXR  }   |Pharmacy/Treatment Route         |X      |       |4           |
+|      [{ RXC }]   |Pharmacy/Treatment Component     |X      |       |4           |
+|   ]              |--- ENCODING end                 |       |       |            |
+|   {              |--- GIVE begin                   |       |       |            |
+|         RXG      |Pharmacy/Treatment Give          |R      |[1..1] |4           |
+|      {           |--- TIMING_GIVE begin            |       |       |            |
+|            TQ1   |Timing/Quantity                  |X      |       |4           |
+|         [{ TQ2 }]|Timing/Quantity Order Sequence   |X      |       |4           |
+|      }           |--- TIMING_GIVE end              |       |       |            |
+|      {  RXR  }   |Pharmacy/Treatment Route         |R      |[1..1] |4           |
+|      [{ RXC }]   |Pharmacy/Treatment Component     |X      |       |4           |
+|      {           |--- OBSERVATION begin            |       |       |            |
+|         [  OBX  ]|Observation/Results              |R      |[1..34]|7           |
+|         [{ NTE }]|Notes and Comments (for OBX)     |X      |       |2           |
+|      }           |--- OBSERVATION end              |       |       |            |
+|   }              |--- GIVE end                     |       |       |            |
+|}                 |--- ORDER end                    |       |       |            |
+
+
+In section 3.3.4.4.8 lines 880-887 update the following lines:
+Point-of-Care Infusion Verification Profile the usage is limited to (1)
+providing the Device ID
+that will be used by the Infusion Order Consumer and (2) providing patient
+height, and weight or
+body surface area (BSA) information from the Infusion Order Programmer to
+the Infusion Order Consumer.
+Note that the definition of the OBX segment in this profile is constrained
+from the definition used in the PCD Observation/Result Message to reflect
+this limited usage. The broader definition can be found in
+B.8 OBX - Observation/Result segment.
+
+One OBX segment containing the Device ID must always be present. One or two
+One to three additional OBX segments containing the patient height and/or
+patient weight and/or patient BSA may optionally follow.
+
+
+In section 3.3.4.4.8 lines 900-905 add the following line:
+OBX-3 Observation Identifier
+      The PCD PIV profile constrains the value of this field to one of the
+      following:
+
+
+      68063^MDC_ATTR_PT_WEIGHT^MDC
+      68060^MDC_ATTR_PT_HEIGHT^MDC
+      188744^MDC_AREA_BODY_SURF_ACTUAL^MDC
+      69986^MDC_DEV_PUMP_INFUS_VMD^MDC
+
+

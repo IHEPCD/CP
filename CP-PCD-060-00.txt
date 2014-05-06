@@ -1,0 +1,148 @@
+
+
+                             IHE Change Proposal
+
+
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-060                          |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |2011-07-18                          |
+|Person assigned:                    |John Rhoads                         |
+
+                    Change Proposal Summary information:
+|ORC Segment Changes in PCD-01 and PCD-03                                  |
+|Submitter’s Name(s) and e-mail      |Al Engelbert (al@ProtoLink.com)     |
+|address(es):                        |                                    |
+|Submission Date:                    |2011-08-01                          |
+|Integration Profile(s) affected:    |PCD DEC and PIV                     |
+|Actor(s) affected:                  |DOR, DOF, DOC, IOP, and IOC         |
+|IHE Technical Framework or          |PCD Technical Framework Volume 2,   |
+|Supplement modified:                |Revision X.X, published October 16, |
+|                                    |2010                                |
+|Volume(s) and Section(s) affected:  |Volume 2, Sections 3.1.4.1.1 and    |
+|                                    |Appendix B.9                        |
+|Rationale for Change:                                                     |
+|This CP addresses the following issues with the ORC segment:              |
+|The ‘Usage’ attribute of the ORC segment in PCD-01 was mistakenly changed |
+|from’X’ to ‘O’ in the transition to Final Text, and should be changed back|
+|to ‘X’                                                                    |
+|The ‘Usage’ attributes of ORC-2 (Placer Order Number) and ORC-3 (Filler   |
+|Order Number) are incorrect for use in the PCD-03 transaction; ORC-2      |
+|should be ‘R’ and ORC-3 should be ‘X’.                                    |
+
+
+Proposed Changes:
+
+
+
+Modify the ‘Usage’ and ‘Card.’ column values for the ORC segment in Table
+3.1.4.1.1-1 as follows (changes are in bold):
+
+
+             Table 3.1.4.1.1-1 ORU^R01^ORU_R01 static definition
+|Segment |Meaning               |Usage  |Card. |HL7 chapter|
+|[{SFT}] |Software Segment      |X      |[0..0]|2          |
+|{       |--- PATIENT_RESULT    |       |      |           |
+|        |begin                 |       |      |           |
+| [      |--- PATIENT begin     |       |      |           |
+|  PID   |Patient Identification|R      |[1..1]|3          |
+|  [PD1] |Additional            |X      |[0..0]|3          |
+|        |Demographics          |       |      |           |
+|..[{NTE}|Notes and Comments    |X      |[0  0]|2          |
+|]       |                      |       |      |           |
+|..[{NK1}|Next of Kin/Associated|X      |[0..0]|3          |
+|]       |Parties               |       |      |           |
+|  [     |--- VISIT begin       |       |      |           |
+|   PV1  |Patient Visit         |O      |[0..1]|3          |
+|   [PV2]|Patient Visit –       |X      |[0..0]|3          |
+|        |Additional Info       |       |      |           |
+|  ]     |--- VISIT end         |       |      |           |
+| ]      |--- PATIENT end       |       |      |           |
+| {      |---ORDER_OBSERVATION  |       |      |           |
+|        |begin                 |       |      |           |
+|  [ORC] |Order Common          |OX     |[0..10|4          |
+|        |                      |       |]     |           |
+|  OBR   |Observation Request   |R      |[1..1]|7          |
+|        |Notes and Comments    |O      |[0..1]|2          |
+|[{NTE}] |                      |       |      |           |
+|  [{    |--- TIMING_QTY begin  |       |      |           |
+|   TQ1  |Timing/Quantity       |O      |[0..1]|4          |
+|        |Timing/Quantity Order |X      |      |4          |
+|[{TQ2}] |Sequence              |       |      |           |
+|  {]    |--- TIMING_QTY end    |       |      |           |
+|  [CTD] |Contact Data          |X      |[0..0]|11         |
+|  [{    |--- OBSERVATION begin |       |      |           |
+|   OBX  |Observation Result    |R      |[1..1]|7          |
+|        |Notes and comments    |       |      |2          |
+|[{NTE}] |                      |       |      |           |
+|  }]    |--- OBSERVATION end   |       |      |           |
+|        |Financial Transaction |X      |[0..0]|6          |
+|[{FT1}] |                      |       |      |           |
+|        |Clinical Trial        |X      |[0..0]|7          |
+|[{CTI}] |Identification        |       |      |           |
+|  [{    |--- SPECIMEN begin    |       |      |           |
+|   SPM  |Specimen              |X      |[0..0]|7          |
+|        |Observation related to|X      |[0..0]|7          |
+|[{OBX}] |Specimen              |       |      |           |
+|  }]    |--- SPECIMEN end      |       |      |           |
+| }      |--- ORDER_OBSERVATION |       |      |           |
+|        |end                   |       |      |           |
+|}       |--- PATIENT_RESULT end|       |      |           |
+|[DSC]   |Continuation Pointer  |X      |[0..0]|2          |
+
+
+
+
+
+
+Modify the ‘Usage’ and ‘Card.’ column values for the Placer Order Number
+and Filler Order Number fields of the ORC segment in Table B.9-1 as follows
+(changes are in bold):
+
+
+            Table B.9-1  HL7 Attribute Table – ORC – Common Order
+|SEQ   |LEN  |DT   |Usage  |Card.  |TBL#    |ITEM#   |ELEMENT NAME           |
+|2     |427  |EI   |CR     |[01..1]|        |00216   |Placer Order Number    |
+|3     |427  |EI   |RX     |[10..10|        |00217   |Filler Order Number    |
+|      |     |     |       |]      |        |        |                       |
+|4     |22   |EI   |RE     |[0..1] |        |00218   |Placer Group Number    |
+|5     |2    |ID   |RE     |[0..1] |0038    |00219   |Order Status           |
+|6     |1    |ID   |RE     |[0..1] |0121    |00220   |Response Flag          |
+|7     |705  |TQ   |X      |[0..0] |        |00221   |Quantity/Timing        |
+|8     |200  |EIP  |RE     |[0..1] |        |00222   |Parent                 |
+|9     |24   |DTM  |RE     |[0..1] |        |00223   |Date/Time of           |
+|      |     |     |       |       |        |        |Transaction            |
+|10    |3220 |XCN  |RE     |[0..*] |        |00224   |Entered By             |
+|11    |250  |XCN  |RE     |[0..*] |        |00225   |Verified By            |
+|12    |3220 |XCN  |RE     |[0..*] |        |00226   |Ordering Provider      |
+|13    |80   |PL   |RE     |[0..1] |        |00227   |Enterer's Location     |
+|14    |250  |XTN  |RE     |[0..2] |        |00228   |Call Back Phone Number |
+|15    |24   |DTM  |RE     |[0..1] |        |00229   |Order Effective        |
+|      |     |     |       |       |        |        |Date/Time              |
+|16    |250  |CWE  |RE     |[0..1] |        |00230   |Order Control Code     |
+|      |     |     |       |       |        |        |Reason                 |
+|17    |250  |CWE  |RE     |[0..1] |        |00231   |Entering Organization  |
+|18    |250  |CWE  |RE     |[0..1] |        |00232   |Entering Device        |
+|19    |250  |XCN  |R      |[1..1] |        |00233   |Action By              |
+|20    |250  |CWE  |RE     |[0..1] |0339    |01310   |Advanced Beneficiary   |
+|      |     |     |       |       |        |        |Notice Code            |
+|21    |250  |XON  |RE     |[0..*] |        |01311   |Ordering Facility Name |
+|22    |250  |XAD  |RE     |[0..*] |        |01312   |Ordering Facility      |
+|      |     |     |       |       |        |        |Address                |
+|23    |250  |XTN  |RE     |[0..*] |        |01313   |Ordering Facility Phone|
+|      |     |     |       |       |        |        |Number                 |
+|24    |250  |XAD  |RE     |[0..*] |        |01314   |Ordering Provider      |
+|      |     |     |       |       |        |        |Address                |
+|25    |250  |CWE  |RE     |[0..1] |        |01473   |Order Status Modifier  |
+|26    |60   |CWE  |RE     |[0..1] |0552    |01641   |Advanced Beneficiary   |
+|      |     |     |       |       |        |        |Notice Override Reason |
+|27    |24   |DTM  |RE     |[0..1] |        |01642   |Filler's Expected      |
+|      |     |     |       |       |        |        |Availability Date/Time |
+|28    |250  |CWE  |RE     |[0..1] |0177    |00615   |Confidentiality Code   |
+|29    |250  |CWE  |RE     |[0..1] |0482    |01643   |Order Type             |
+|30    |250  |CNE  |RE     |[0..1] |0483    |01644   |Enterer Authorization  |
+|      |     |     |       |       |        |        |Mode                   |
+

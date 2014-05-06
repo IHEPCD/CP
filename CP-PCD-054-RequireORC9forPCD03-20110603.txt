@@ -1,0 +1,103 @@
+
+
+                             IHE Change Proposal
+
+
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Device (PCD).          |
+|Change Proposal ID:                 |CP-PCD-054-01                       |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |12April2011                         |
+|Person assigned:                    |                                    |
+
+                    Change Proposal Summary information:
+|Require ORC-9 in all PCD-03 transactions                                  |
+|Submitter’s Name(s) and e-mail      |Brad Lunde                          |
+|address(es):                        |                                    |
+|Submission Date:                    |12April2011                         |
+|Integration Profile(s) affected:    |PIV                                 |
+|Actor(s) affected:                  |IOC and IOP.                        |
+|IHE Technical Framework or          |Revision 1.2; September 30, 2010    |
+|Supplement modified:                |                                    |
+|Volume(s) and Section(s) affected:  |Volume 2                            |
+|Rationale for Change:                                                     |
+|To ensure messages being delivered from the IOP to the IOC are timely and |
+|old transactions can be identified easily and without inturpretation it is|
+|requested that the ORC-9 be required for all PCD-03 transactions.  The    |
+|time in this field should be the time the clinician initiated the program |
+|request, not the time the IOP generated the message.                      |
+
+
+Update Row 10 in table B.9-1:
+|SEQ |LEN |DT  |Usage|Card.|TBL# |ITEM#|ELEMENT NAME                    |
+|2   |427 |EI  |C    |[0..1|     |00216|Placer Order Number             |
+|    |    |    |     |]    |     |     |                                |
+|3   |427 |EI  |R    |[1..1|     |00217|Filler Order Number             |
+|    |    |    |     |]    |     |     |                                |
+|4   |22  |EI  |RE   |[0..1|     |00218|Placer Group Number             |
+|    |    |    |     |]    |     |     |                                |
+|5   |2   |ID  |RE   |[0..1|0038 |00219|Order Status                    |
+|    |    |    |     |]    |     |     |                                |
+|6   |1   |ID  |RE   |[0..1|0121 |00220|Response Flag                   |
+|    |    |    |     |]    |     |     |                                |
+|7   |705 |TQ  |X    |[0..0|     |00221|Quantity/Timing                 |
+|    |    |    |     |]    |     |     |                                |
+|8   |200 |EIP |RE   |[0..1|     |00222|Parent                          |
+|    |    |    |     |]    |     |     |                                |
+|9   |24  |DTM |RE   |[01..|     |00223|Date/Time of Transaction        |
+|    |    |    |     |1]   |     |     |                                |
+|10  |3220|XCN |RE   |[0..*|     |00224|Entered By                      |
+|    |    |    |     |]    |     |     |                                |
+|11  |250 |XCN |RE   |[0..*|     |00225|Verified By                     |
+|    |    |    |     |]    |     |     |                                |
+|12  |3220|XCN |RE   |[0..*|     |00226|Ordering Provider               |
+|    |    |    |     |]    |     |     |                                |
+|13  |80  |PL  |RE   |[0..1|     |00227|Enterer's Location              |
+|    |    |    |     |]    |     |     |                                |
+|14  |250 |XTN |RE   |[0..2|     |00228|Call Back Phone Number          |
+|    |    |    |     |]    |     |     |                                |
+|15  |24  |DTM |RE   |[0..1|     |00229|Order Effective Date/Time       |
+|    |    |    |     |]    |     |     |                                |
+|16  |250 |CE  |RE   |[0..1|     |00230|Order Control Code Reason       |
+|    |    |    |     |]    |     |     |                                |
+|17  |250 |CE  |RE   |[0..1|     |00231|Entering Organization           |
+|    |    |    |     |]    |     |     |                                |
+|18  |250 |CE  |RE   |[0..1|     |00232|Entering Device                 |
+|    |    |    |     |]    |     |     |                                |
+|19  |250 |XCN |R    |[1..1|     |00233|Action By                       |
+|    |    |    |     |]    |     |     |                                |
+|20  |250 |CE  |RE   |[0..1|0339 |01310|Advanced Beneficiary Notice Code|
+|    |    |    |     |]    |     |     |                                |
+|21  |250 |XON |RE   |[0..*|     |01311|Ordering Facility Name          |
+|    |    |    |     |]    |     |     |                                |
+|22  |250 |XAD |RE   |[0..*|     |01312|Ordering Facility Address       |
+|    |    |    |     |]    |     |     |                                |
+|23  |250 |XTN |RE   |[0..*|     |01313|Ordering Facility Phone Number  |
+|    |    |    |     |]    |     |     |                                |
+|24  |250 |XAD |RE   |[0..*|     |01314|Ordering Provider Address       |
+|    |    |    |     |]    |     |     |                                |
+|25  |250 |CWE |RE   |[0..1|     |01473|Order Status Modifier           |
+|    |    |    |     |]    |     |     |                                |
+|26  |60  |CWE |RE   |[0..1|0552 |01641|Advanced Beneficiary Notice     |
+|    |    |    |     |]    |     |     |Override Reason                 |
+|27  |24  |DTM |RE   |[0..1|     |01642|Filler's Expected Availability  |
+|    |    |    |     |]    |     |     |Date/Time                       |
+|28  |250 |CWE |RE   |[0..1|0177 |00615|Confidentiality Code            |
+|    |    |    |     |]    |     |     |                                |
+|29  |250 |CWE |RE   |[0..1|0482 |01643|Order Type                      |
+|    |    |    |     |]    |     |     |                                |
+|30  |250 |CNE |RE   |[0..1|0483 |01644|Enterer Authorization Mode      |
+|    |    |    |     |]    |     |     |                                |
+
+
+Replace Section B.9 lines 2177-2179 :
+ORC-9 Date/Time of Transaction
+      See HL7 V2.6 Section 4.5.1.9 for details. The PCD TF does not further
+      constrain this field.
+
+ORC-9 Date/Time of Transaction
+      The time in this field should be the time the clinician initiated the
+      program request, not the time the IOP generated the message.  The IOC
+      may use this field to determine if the request is stale or too old.

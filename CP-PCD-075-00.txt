@@ -1,0 +1,43 @@
+
+
+                             IHE Change Proposal
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Device                 |
+|Change Proposal ID:                 |CP-PCD-075-00                       |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |2012.05.25                          |
+|Person assigned:                    |John Rhoads                         |
+
+                    Change Proposal Summary information:
+|Add RTM Specification Detail to the PCD TF-3                              |
+|                                    |Todd Cooper                         |
+|                                    |(ToddCooperAFC@gmail.com)           |
+|Submission Date:                    |2012.05.25                          |
+|Integration Profile(s) affected:    |RTM Content Module                  |
+|Actor(s) affected:                  |None                                |
+|IHE Technical Framework or          |PCD                                 |
+|Supplement modified:                |                                    |
+|Volume(s) and Section(s) affected:  |Primarily TF-3, section 4 (which is |
+|                                    |reserved for RTM)                   |
+|Rationale for Change:                                                     |
+|Though the Rosetta Terminology Mapping (RTM) constrained data set is      |
+|mandatory for all PCD transaction content, the detailed specification     |
+|information is not currently included in the PCD TF.  There is mention of |
+|it in the following sections:                                             |
+|TF-1 (2.2.4) – This high-level overview is misplaced, since RTM is not    |
+|strictly a Profile; a new content module section should be created        |
+|TF-1 (Appendix A) – RTM Problem Statement & Key Use Case; this content    |
+|should be moved to TF-3 (4.1)                                             |
+|TF-2 (Appendix K) – Additional overview and background information about  |
+|RTM, some of which is now dated with the public release of the NIST RTMMS |
+|tool.                                                                     |
+|None of these sections include the detailed specifications that define the|
+|RTM design.  As noted, the information is also both dated and in some     |
+|cases, not in the appropriate location.                                   |
+|This CP updates the sections identified above as well as adds the detailed|
+|information to TF-3 (4.1) to capture RTM detailed specifications.         |
+
+
+

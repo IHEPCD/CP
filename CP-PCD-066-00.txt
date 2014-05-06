@@ -1,0 +1,114 @@
+
+
+                             IHE Change Proposal
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-066                          |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |2012-05-22                          |
+|Person assigned:                    |John Rhoads                         |
+
+                    Change Proposal Summary information:
+|HL7 version update to 2.6                                                 |
+|Submitter’s Name(s) and e-mail      |Stephen Swanson (sswanson@sjm.com)  |
+|address(es):                        |Gene Hageman                        |
+|                                    |(gene.hageman@medtronic.com)        |
+|                                    |Alexander Kraus                     |
+|                                    |(alexander.kraus@biotronik.com)     |
+|                                    |Ken Hoyme (ken.hoyme@bsci.com)      |
+|Submission Date:                    |April 05, 2012                      |
+|Integration Profile(s) affected:    |Implantable Device – Cardiac –      |
+|                                    |Observation                         |
+|Actor(s) affected:                  |Implantable Device – Cardiac –      |
+|                                    |Reporter                            |
+|                                    |Implantable Device – Cardiac –      |
+|                                    |Consumer                            |
+|IHE Technical Framework or          |IHE Patient Care Device (PCD)       |
+|Supplement modified:                |Technical Framework, Volume 2;      |
+|                                    |Revision 1.0; August 12, 2011       |
+|Volume(s) and Section(s) affected:  |Volume 2 (PCD TF-2); 3.9 (various   |
+|                                    |sub-sections)                       |
+|Rationale for Change:                                                     |
+|Update the specified HL7 version from 2.5 to 2.6. This is required to     |
+|bring the IDCO profile in-line with other Patient Care Device profiles    |
+|with the goal for Consummers to simplify implementation similar to other  |
+|profiles.                                                                 |
+
+
+Proposed Changes:
+
+Replace Section 3.9.3 by the following and add Note:
+
+3.9.3 Referenced Standard
+
+
+HL7 Messaging Standard v2.56
+
+NOTE – The IDCO is functional with HL7 Messaging Standard v2.5. The only
+change required is when specifying in the message header which version is
+being used.
+
+ISO 19005-1. Document management – Electronic document file format for long-
+term preservation – Part 1: Use of PDF (PDF/A)
+
+UCUM: Unified Code for Units of Measure, Regenstrief Institute for Health
+Care, Indianapolis 2005. Version 1.6
+
+IEEE 11073_10103-2012 Standard for Health informatics - Point-of-care
+medical device communication - Nomenclature - Implantable device, cardiac
+
+Replace Section 3.9.4.1 by the following:
+
+3.9.4.1 HL7 ORU Observation
+
+
+This is a standard HL7 v2.56 unsolicited orders and observation message
+containing the observations taken by the implanted device.  Information is
+coded using the IEEE 11073-10103 IDC Nomenclature.
+
+
+
+
+
+Replace Section 3.9.4.1.2 by the following:
+
+3.9.4.1.2 Message Semantics
+
+
+The message is an unsolicited v2.56 ORU message from the Implantable Device
+– Cardiac – Reporter to the Implantable Device – Cardiac – Consumer with a
+corresponding ACK message back to the Implantable Device – Cardiac –
+Reporter. The contents of the message (in OBX segments) are a required set
+of individual observations or measurements trans-coded into separate HL7
+v2.56 OBX segments and an optional encapsulated PDF document.
+
+Refer to the HL7 v2.56 Standard, Chapter 7 ORU Message for general message
+semantics.
+
+The constrained message structure is given in Table 3.9.4.1.2-1, with
+additional details provided in sections below.
+
+
+
+
+
+Replace Section 3.9.4.1.2.2 (PID-3.1) by the following:
+
+PID-3.1 Patient Identifier List
+
+ID Number contains a unique identifier for the patient assigned by the
+Implantable Device – Cardiac – Reporter. Identifier Type Code is
+constrained by Table 0203 listed below (others can be included as defined
+in the 2.56 standard). The first identifier will always be the unique
+model/serial number of the implanted device with an identifier of type U
+(see table following). This will be used by the Implantable Device –
+Cardiac – Consumer / Repository actor to match the device interrogations
+with the patient accounts. Assigning Authority will be a unique name of the
+Implantable Device – Cardiac – Reporter system or owning organization that
+creates the observation and will be coded using the MDC_IDC Nomenclature,
+MDC_IDC_DEV_MFG term.
+
+
+
+

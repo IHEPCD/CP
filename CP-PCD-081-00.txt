@@ -1,0 +1,142 @@
+
+
+
+Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-081-00                       |
+|Change Proposal Status:             |Ballot                              |
+|Date of last update:                |2012-06-08                          |
+|Person assigned:                    |John Rhoads                         |
+
+Change Proposal Summary information:
+|Clarify treatment of time in TF vol. 2                                    |
+|Submitter’s Name(s) and e-mail      |John Rhoads                         |
+|address(es):                        |                                    |
+|Submission Date:                    |2012-06-08                          |
+|Integration Profile(s) affected:    |General                             |
+|Actor(s) affected:                  |General                             |
+|IHE Technical Framework or          |IHE Patient Care Device (PCD)       |
+|Supplement modified:                |Technical Framework; Volume 2;      |
+|                                    |Revision 1.0; August 12, 2011       |
+|Volume(s) and Section(s) affected:  |Vol. 2, Section B.7.1               |
+|Rationale for Change:                                                     |
+|Some implementers found the stipulations about time representation in     |
+|observation messages unclear. This CP is a response to questions.         |
+
+
+Apply changes to the text of Appendix B.7.1 as follows. Insertions
+indicated by bold type, deletions indicated by crossed out words.
+
+       B.7.1Time Stamps and Time Synchronization
+
+Medical device data observations conveyed by the IHE PCD DEC Technical
+Frameworks should where feasible use ‘consistent time’ for MSH-7, OBR-7,
+OBR-8 and OBX-14, where ‘consistent time’ is based on a known reference
+time source such as NTP or similar service.  Since medical devices may use
+local clocks that are not synchronized to ‘consistent time’, a standardized
+representation for disclosing how the device time(s) were mapped to
+‘consistent time’ is required to provide traceability between the two.
+
+In order to facilitate the correlation of transmitted observations, each
+observation should contain a time stamp from a consistent, isochronous time-
+base, either by default reference to [OBR-7, OBR-8) or by an overriding
+value in OBX-14.  Since many medical devices have only a sense of local
+time, and this local time may not be equivalent to the local time of the
+DOR, it is a responsibility of the DOR to ensure the reported times within
+an Observation Result message are consistent.  This means that all
+observation times reported SHOULD be UTC, as indicated by including a time
+zone offset of +0000, but it is permissible to use local time with the
+required correct time zone offset included in the timestamp representation
+since this can readily be converted to UTC whatever the time zone of the
+receiving system.  However, iIn order to preserve the original time marking
+provided by the device, the Observation Result message SHALL contain a
+synchronization time element such as MDC_ATTR_TIME_ABS at the Medical
+Device System level which discloses both the device’s notion of time and
+the corresponding ‘consistent time’ (UTC) of the DOR, as described in the
+following table. The DOR SHALL use this device time as the basis for
+correcting the timestamps from the device (for example, for OBX-14) to the
+DOR’s ‘consistent time’.
+
+
+
+ | | | | | | | |Msg Segment |Description and comments |Status | | | | | | |
+| | |MSH...... |MSH-7 Date/Time of Message created/sent (DTMDOR) |M | | | |
+| | | | | |PID...... | |M | | | | | | | | | |OBR...... |[OBR-7, OBR-8)
+Default time interval for child OBXs (DTMDOR) |M | | | | | | | | | |OBX..
+0.0.0.1 |MDC_TIME_SYNC_PROTOCOL  (time sync protocol used by the DOR) |O |
+| | | | | | | | |OBX.. 0.0.0.2 |MDC_TIME_ACCURACY  (known or estimated
+accuracy of DOR time) |O | | | | | | | | | |OBX.. 1 |MDS for device #1 |M |
+| | | | | | | | |OBX.. 1.0.0.1 |MDC_TIME_CAP_STATE  (BITS-16, using
+MdsTimeCapState) |O | | | | | | | | | |OBX.. 1.0.0.2
+|MDC_TIME_SYNC_PROTOCOL  (from nom-part-infrastructure) |O | | | | | | | |
+| |OBX.. 1.0.0.3 |MDC_TIME_SYNC_ACCURACY  (device absolute time accuracy)
+|O | | | | | | | | | |OBX.. 1.0.0.4 |MDC_ATTR_TIME_ABS (displayed time) and
+OBX-14 (DTMDOR) |C[1] | | | | | | | | | |OBX.. 1.0.0.5 |MDC_ATTR_TIME_REL
+(relative time) and OBX-14 (DTMDOR) |C | | | | | | | | | |OBX.. 1.0.0.6
+|MDC_ATTR_TIME_HI_RES (hi-res rel time) and OBX-14 (DTMDOR) |C | | | | | |
+| | | |OBX.. 1.0.0.7 |OBX-14 (DTMDOR, optional, overrides default (OBR-7,
+OBR-8] time interval | | | | | | | | | | |OBX.. 1.0.0.7.1 |OBX-14 | | | | |
+| | | | | |OBR...... |[OBR-7, OBR-8)  Default time interval for child OBXs
+(DTMDOR) |M | | | | | | | | | |OBX.. 2 |MDS for device #2 |M | |Notes:
+
+Status column gives Presence Qualifier, M: mandatory, O: option, C:
+conditional.
+
+The dotted numbers represent the object hierarchy value of OBX-4 and are
+provided as example values only.
+
+a.    DTMDOR is the datetime of the DOR, reported with an HL7 V2.6
+‘date/time’ data type.  A time stamp resolution of at least one second and
+a time zone offset are required, e.g., YYYYMMDDHHMMSS[.S[S[S[S]]]]+/-ZZZZ
+(required items shown in bold font).
+
+b.    Within the time scope of each OBR and the time interval expressed in
+[OBR-7, OBR-8), time discontinuities in the MDC_ATTR_TIME_ABS displayed
+time are prohibited.  Discontinuities due to daylight savings or other
+clock adjustments require that data on the new displayed timeline shall be
+sent as a separate OBR.
+
+c.    The OBR establishes the default time context for all its child OBXs,
+but can be overridden by a time stamp in OBX-14.
+
+d.    The time interval specified by [OBR-7, OBR-8) is a mathematically
+‘closed’ interval for OBR-7 and ‘open’ for OBR-8.  A datum that occurs
+exactly at the time specified by OBR-8 would be sent in the next time
+epoch.  This allows subsequent OBR segments to represent a continuous
+sequence of time.  For encoding a simple set of episodic measurement, if
+there is no logical "end" of the observation period, OBR-8 may be set to
+the message creation time to indicate the logical upper limit for the
+contained observations.
+
+
+
+HL7 time stamps sent in MSH-7, OBR-7, OBR-8 and OBX-14 should in most
+situations be ‘consistent time’ based on NTP or any other reference time
+source that provides traceability to NTP when this is feasible. As a
+consequence, it is strongly encouraged that the gateway or application
+device (AHD) support synchronized time as an NTP or SNTP (or other time
+service) client so that it can (1) apply consistent time stamps to the data
+reported over the WAN interface and (2) provide a time synchronization
+service to the agents connected to it.
+
+The MDC_ATTR_TIME_ABS (in OBX-3) observation provides traceability between
+the displayed time shown on the device, as a DTM datatype in OBX-5, and the
+corresponding gateway or AHD time reported in OBX-14.  Using an OBX to
+report this as an observation of the time correlation is much simpler than
+attempting to use other HL7 V2 message segments such as TQ1 or TQ2, which
+are intended more for scheduling and expressing periodic time points.
+
+The MDC_ATTR_TIME_REL and MDC_ATTR_TIME_HI_RES (in OBX-3) observations
+provide traceability between the relative or hi-resolution relative values,
+reported as an integer value in OBX-5, and the corresponding AHD time
+reported in OBX-14.  The units-of-measure are μs or ms, expressed as MDC
+units.
+
+
+-----------------------
+
+
+
+
+
+

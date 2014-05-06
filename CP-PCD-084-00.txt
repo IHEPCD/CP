@@ -1,0 +1,93 @@
+
+
+                             IHE Change Proposal
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-084                          |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |2012-06-06                          |
+|Person assigned:                    |Ken Fuchs                           |
+
+
+                    Change Proposal Summary information:
+|WCM option to DEC                                                         |
+|Submitter’s Name(s) and e-mail      |Ken Fuchs; ken.fuchs@ieee.org       |
+|address(es):                        |                                    |
+|Submission Date:                    |2012-05-22                          |
+|Integration Profile(s) affected:    |DEC                                 |
+|Actor(s) affected:                  |DOR, DOC                            |
+|IHE Technical Framework or          |PCD TF Vol 1 TI 2010                |
+|Supplement modified:                |                                    |
+|Volume(s) and Section(s) affected:  |Volume 1; Section 4.2               |
+|Rationale for Change:                                                     |
+|Update to the TF to include the support of WCM in the DEC profile.        |
+
+
+
+
+Change Table 4.2-1
+
+From:
+|Actor                |Option Name              |Section in |
+|                     |                         |Volume 2   |
+|Device Observation   |MLLP Transport           |Appendix I |
+|Reporter             |                         |           |
+|                     |WS-* Transport           |Appendix J |
+|Device Observation   |Subsribe PCD Data        |3.2        |
+|Consumer             |                         |           |
+|                     |MLLP Transport           |Appendix I |
+|                     |WS-* Transport           |Appendix J |
+|Device Observation   |MLLP Transport           |Appendix I |
+|Filter               |                         |           |
+|                     |WS-* Transport           |Appendix J |
+
+
+      NOTE:  For all actors in Table 4-2.1, either the MLLP and/or WS-*
+      transport option(s) must be implemented and specified.
+
+
+
+
+
+
+
+
+
+To:
+|Actor                |Option Name           |Volume /       |
+|                     |                      |Section        |
+|Device Observation   |MLLP Transport        |Vol. 2 Appendix|
+|Reporter             |                      |I              |
+|                     |WS-* Transport        |Vol 2 /        |
+|                     |                      |Appendix J     |
+|                     |WCM                   |Vol 3 /        |
+|                     |                      |Appendix 5     |
+|Device Observation   |Subsribe PCD Data     |Vol 2 / Section|
+|Consumer             |                      |3.2            |
+|                     |MLLP Transport        |Vol 2 /        |
+|                     |                      |Appendix I     |
+|                     |WS-* Transport        |Vol 2 /        |
+|                     |                      |Appendix J     |
+|                     |WCM                   |Vol 3 /        |
+|                     |                      |Appendix 5     |
+|Device Observation   |MLLP Transport        |Vol 2 /        |
+|Filter               |                      |Appendix I     |
+|                     |WS-* Transport        |Vol 2 /        |
+|                     |                      |Appendix J     |
+
+
+      NOTE:
+
+      For all actors in Table 4.2-1, either the MLLP and/or WS-* transport
+      option(s) must be implemented and specified.
+
+      The Device Observation Consumer and Device Observation Filter must be
+      able to gracefully handle transactions that include WCM data even if
+      they do not support the WCM option.
+
+
+
+
+

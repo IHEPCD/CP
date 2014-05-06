@@ -1,0 +1,176 @@
+
+
+                             IHE Change Proposal
+
+
+
+
+                            Tracking information:
+|IHE Domain                        |Patient Care Devices              |
+|Change Proposal ID:               |CP-PCD-053-01                     |
+|Change Proposal Status:           |Submitted                         |
+|Date of last update:              |05/18/2011                        |
+|Person assigned:                  |(assigned by Domain Technical     |
+|                                  |Committee)                        |
+
+                    Change Proposal Summary information:
+|PIV Open Issues section                                             |
+|Submitter’s Name(s) and e-mail   |Jeff Rinda                        |
+|address(es):                     |(jeff.rinda@hospira.com)          |
+|Submission Date:                 |05/18/2011                        |
+|Integration Profile(s) affected: |Point-of-Care Infusion            |
+|                                 |Verification (PIV)                |
+|Actor(s) affected:               |None                              |
+|IHE Technical Framework or       |Technical Framework version 1.2   |
+|Supplement modified:             |(9/30/2010)                       |
+|Volume(s) and Section(s)         |Vol 1 – PIV section               |
+|affected:                        |Vol 2 – Section 3.3.4.1; also     |
+|                                 |update reference to PIV           |
+|                                 |application error table           |
+|                                 |PIV Application Error table       |
+|                                 |(standalone document)             |
+|Rationale for Change:                                               |
+|Added new application error messages                                |
+|Add a more specific reference in the TF vol 2 (B.3 ERR segment;     |
+|ERR-5 section) about where the application error table can be found |
+|on the IHE site (since this table is not included in the TF text).  |
+|Added a Limitations section to Vol 1 including an explanation for   |
+|how the PIV profile can support rate changes or titrations.         |
+|Added a statement to Vol. 2 about the use of information in the     |
+|PCD-03 transaction.                                                 |
+
+
+
+
+Replace the PIV application error table (Table 0533 Application Error Code)
+with the following version (current as of 5/18/2011).  Insert a reference
+in Vol 2 about the existence and location of this table (since it is not
+included as part of the TF).
+
+
+                     Table 0533  Application Error code
+|Value      |Description                             |Comment               |
+|9001       |Unknown infuser or channel              |e.g. incorrect infuser|
+|           |                                        |or channel ID         |
+|9002       |Infuser/channel is currently infusing   |                      |
+|9003       |Missing required program parameter(s)   |e.g. Give Amount      |
+|           |(ParameterName1, ParameterName2, ...)   |Minimum (RXG-5) -     |
+|           |                                        |volume to be infused -|
+|           |                                        |is missing            |
+|9004       |Invalid program parameter(s)            |e.g. volume units are |
+|           |(ParameterName1, ParameterName2, ...)   |not mL                |
+|9005       |Parameter (ParameterName) outside of    |e.g. ordered rate     |
+|           |allowable range (MinValue to MaxValue)  |greater than pump     |
+|           |                                        |maximum               |
+|9006       |Infuser is powered off                  |                      |
+|9007       |Infuser is offline or unable to connect |e.g. infuser not on   |
+|           |to infuser                              |network or weak       |
+|           |                                        |wireless signal       |
+|9008       |Invalid units for parameter             |e.g. Give Strength    |
+|           |(ParameterName)                         |Volume Units (RXG-24) |
+|           |                                        |contains a medication |
+|           |                                        |unit value instead of |
+|           |                                        |volume units          |
+|9009       |Dose/Rate Units do not match drug       |e.g. ordered units =  |
+|           |library                                 |mL/hr; drug library   |
+|           |                                        |units =mcg/kg/min     |
+|9010       |Unable to match medication to drug      |e.g. Medication does  |
+|           |library                                 |not exist in drug     |
+|           |                                        |library               |
+|9011       |Patient weight mismatch                 |e.g. patient weight   |
+|           |                                        |known by pump differs |
+|           |                                        |from weight sent in   |
+|           |                                        |PCD-03                |
+|9012       |Patient ID mismatch                     |e.g. patient ID known |
+|           |                                        |by pump differs from  |
+|           |                                        |ID sent in PCD-03     |
+|9013       |Unable to program medication as         |e.g. medication not   |
+|           |piggyback                               |configured for        |
+|           |                                        |piggyback             |
+|           |                                        |administration in drug|
+|           |                                        |library               |
+|9014       |Dose rate or VTBI exceeds maximum       |e.g. greater than pump|
+|           |                                        |maximum               |
+|9015       |Request timed out                       |                      |
+|9016       |Unknown error                           |Used when other errors|
+|           |                                        |are not applicable    |
+|9017       |Infuser cannot accept program           |Infuser is in a state |
+|           |                                        |where it cannot accept|
+|           |                                        |program; e.g. alarming|
+|           |                                        |or in standby         |
+|9018       |Parameter (ParameterName) does not match|e.g. Give Strength    |
+|           |drug library                            |Units (RXG-18) = mg,  |
+|           |                                        |drug library = mEq    |
+|9019       |Patient weight missing                  |Drug is weight-based  |
+|           |                                        |or BSA-based, but     |
+|           |                                        |patient weight OBX is |
+|           |                                        |missing               |
+|9020       |Patient height missing                  |Drug is BSA-based, but|
+|           |                                        |patient height OBX is |
+|           |                                        |missing               |
+|9021       |Care area or profile mismatch           |Care area or profile  |
+|           |                                        |not cleared on pump;  |
+|           |                                        |or pump is set to a   |
+|           |                                        |different care area   |
+|9022       |Requested infusion program is stale     |The value of ORC.9 is |
+|           |                                        |older than what the   |
+|           |                                        |IOC will allow to     |
+|           |                                        |program the pump      |
+
+The following is a revision of text that was formerly contained in the Open
+Issues section of the PIV supplement.  This text should be incorporated
+into TF Vol 1 as a PIV “Limitations” section.
+
+Limitations
+
+
+1.  The principal use case involves starting a new infusion or container.
+Titrations or rate changes on a previously programmed infusion are
+supported if one of the following applies:
+
+   a) The Infusion Order Programmer is able to provide the amount of the
+      volume currently present in the bag in the PCD-03 transaction (rather
+      than the ordered volume)
+
+   b) The BCMA application provides an acceptable workflow for the clinician
+      to adjust the volume to be infused directly on the pump from the
+      amount ordered to the amount currently present in the bag
+
+   c) The Infusion Order Consumer is able to interpret the PCD-03
+      transaction as a rate change without explicit identification as such
+      (since there is no element in the transaction that refers to whether
+      it is for a new bag vs. a rate change).
+
+2.  Patient-controlled analgesia (PCA) infusion devices are not supported.
+
+3.  The following therapies, modes, and methods of operation are not
+supported:
+
+   a) Bolus, loading dose, multi-step, periodically repeating or ramp/taper
+      therapies
+
+   b) Delayed start mode
+
+   c) Programming concurrent or sequenced infusions on more than one pump
+      channel using a single transaction
+
+4.  PIV can be used to support administration of medications from a syringe
+and/or using a syringe pump device if the Infusion Order Consumer does not
+require the syringe size to be specified.
+
+
+
+
+
+Add the following change toTF Vol 2 in Section 3.3.4.1
+
+PCD-03 Communicate Infusion Order (RGV^O15^RGV_O15) static definition
+
+
+The PCD-03 Communicate Infusion Order message is used to communicate
+infusion data from an Infusion Order Programmer (IOP) to an Infusion Order
+Consumer (IOC).
+
+Since the IOC is typically a gateway rather than an infusion pump, all of
+the information specified in the PCD-03 Communicate Infusion Order
+transaction is not necessarily provided to or used to program the device.

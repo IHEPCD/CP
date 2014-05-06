@@ -1,0 +1,160 @@
+
+
+                              IHE Change Proposal
+
+
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-089-01                       |
+|Change Proposal Status:             |Approved by TC; edits are based on  |
+|                                    |comments received                   |
+|Date of last update:                |06/11/2013                          |
+|Person assigned:                    |Jeff Rinda                          |
+
+                    Change Proposal Summary information:
+|Support programming an infusion rate or dose change in PIV                |
+|Submitter’s Name(s) and e-mail      |Jeff Rinda (jeff.rinda@hospira.com) |
+|address(es):                        |                                    |
+|Submission Date:                    |04/24/2013                          |
+|Integration Profile(s) affected:    |Point-of-care Infusion Verification |
+|                                    |(PIV)                               |
+|Actor(s) affected:                  |Infusion Order Programmer, Infusion |
+|                                    |Order Consumer                      |
+|IHE Technical Framework or          |Version 2.0 (August 16, 2012)       |
+|Supplement modified:                |                                    |
+|Volume(s) and Section(s) affected:  |Volumes 1 and 2 (sections enumerated|
+|                                    |below)                              |
+|Rationale for Change:                                                     |
+|                                                                          |
+|Currently PIV supports a single nursing workflow:  starting a new         |
+|bag/bottle/container for an infusion order.  This change would provide    |
+|support for another common workflow: changing the rate or dose of an      |
+|infusion which is currently in progress.                                  |
+
+
+Volume 1 (“Limitations” section to be added in Technical Framework v2.0 -
+2012)
+
+Limitations
+
+
+1.  The principal use case involves starting a new infusion or container.
+Titrations or rate changes on a previously programmed infusion are
+supported if one of the following applies:
+
+   a) The Infusion Order Programmer is able to provide the amount of the
+      volume currently present in the bag in the PCD-03 transaction (rather
+      than the ordered volume)
+
+   b) The BCMA application provides an acceptable workflow for the clinician
+      to adjust the volume to be infused directly on the pump from the
+      amount ordered to the amount currently present in the bag
+
+   c) The Infusion Order Consumer is able to interpret the PCD-03
+      transaction as a rate change without explicit identification as such
+      (since there is no element in the transaction that refers to whether
+      it is for a new bag vs. a rate change).
+
+
+
+Volume 1 - Glossary
+
+Titration: a change of rate or dose on an infusion currently in progress.
+Typically used for dose-based infusions, such as those ordered in mg/hr or
+mcg/kg/min,  but can also apply to rate-based infusions, such as those
+ordered in mL/hr.
+
+
+
+Volume 2
+
+B.9   ORC – Common Order Segment
+
+ORC-1 Order Control
+
+      Definition: Determines the function of the order segment. The PCD TF
+      requires that this field be valued as RE RE or SC according to the
+      table below when the RGV^O15^RGV_O15 Pharmacy/Treatment Give Message
+      is used to send information from the Infusion Order Programmer (IOP)
+      to the Infusion Order Consumer (IOC).
+
+|ORC-1 Value|Use                                          |
+|RE         |Start of a new bag, bottle, or container     |
+|SC         |Change of dose or rate on a currently        |
+|           |programmed infusion                          |
+
+
+3.3.4.4.9 Expected Actions
+
+The Pharmacy/Treatment Give Message (RGV^O15^RGV_O15) is sent from the
+Infusion Order
+Programmer to the Infusion Order Consumer.
+
+The receiving system validates the message and responds with an accept
+acknowledgment message (ACK^O15^ACK). If an error condition is detected and
+if MSH-16 (Application
+Acknowledgement Type) in the RGV^O15^RGV_O15 message is valued as "ER" or
+"AL", the
+IOC responds with a Pharmacy/Treatment Give Acknowledgment Message
+(RRG^O16^RRG_O16).
+
+If the message is accepted by the IOC, the accept acknowledgment will
+contain the value CA in MSA-1. If not, the accept acknowledgment will
+contain either CR or CE, based
+upon HL7 enhanced acknowledgment rules (see HL7 v2.6, Section 2.9.3.2).
+
+Message acceptance is based on:
+• All required segments and fields are present
+• No incorrect data types are present. Validation of fields that must
+contain specific values as defined in the Technical Framework (e.g., MSH-21
+must be "1.3.6.1.4.1.19376.1.6.1.3.1").
+
+If MSH-16 (Application Acknowledgement Type) is valued as "ER" or "AL", the
+IOC may
+report an application acknowledgement error using the Pharmacy/Treatment
+Give
+Acknowledgement Message (RRG^O16^RRG_O16) for errors such as:
+• Unknown device IHE Patient Care Device Technical Framework, Volume 2 (PCD
+TF-2): Transactions
+• Dose/rate and volume are not within vendor parameters for the device
+type.
+• Drug is not present in onboard library.
+
+
+Messages containing “SC” in ORC-1 Order Control will not send the volume to
+be infused information (RXG-5, RXG-7) to the pump; rather the pump will use
+its current volume setting.
+
+If the message from the Infusion Order Programmer is rejected, the
+acknowledgement will
+contain the value AR or AE in MSA-1, based upon HL7 enhanced acknowledgment
+rules (see
+HL7 v2.6, Section 2.9.2.2). The reason for rejection is provided in the ERR
+segment.
+
+Once the programming information is received by the pump, the clinician may
+choose to do one
+of the following: (1) confirm the settings on the pump and then start the
+infusion, (2) enter or
+modify one or more settings and then start the infusion, or (3) cancel the
+program altogether.
+
+Once the infusion is started, the settings actually programmed as well as
+the current state of the
+infusion can be obtained using the PCD-01 (Communicate PCD Data)
+transaction.
+
+
+                       *** End of Change Proposal ***
+
+
+Additional information related to this change proposal:
+
+CP 740 submitted 12/11/2012 to HL7 Orders and Observations workgroup:
+
+In HL7 v2.6 the definition of the RGV message states that the ORC must have
+the filler order number and the order control code RE.  The CP provides for
+the order control code SC (status changed) for an update to an continuous
+administration (such as an IV fluid) that is currently in progress.

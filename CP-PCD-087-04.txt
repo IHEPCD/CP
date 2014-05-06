@@ -1,0 +1,228 @@
+
+
+                             IHE Change Proposal
+
+
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-nnn-mm                       |
+|Change Proposal Status:             |Submitted to ACM WG, will then move |
+|                                    |to PCD TC for vote                  |
+|Date of last update:                |2012.12.18                          |
+|Person assigned:                    |Monroe Pattillo                     |
+
+                    Change Proposal Summary information:
+|ACM Updates                                                               |
+|Submitter’s Name(s) and e-mail      |Monroe Pattillo                     |
+|address(es):                        |<monroe.pattillo@gmail.com>         |
+|Submission Date:                    |2012.12.18                          |
+|Integration Profile(s) affected:    |ACM                                 |
+|Actor(s) affected:                  |AR, AM                              |
+|IHE Technical Framework or          |ACM Supplement, Trial Implementation|
+|Supplement modified:                |dated 2012.08.16                    |
+|Volume(s) and Section(s) affected:  |Volume 2 and Appendix Examples      |
+|Rationale for Change:                                                     |
+|                                                                          |
+|A number of updates have been identified for the ACM Supplement, Trial    |
+|Implementation since it was published:                                    |
+|Clarify in PCD-04 which components of MSH-21 are required or require      |
+|specific content.                                                         |
+|Changed datatype of OBR-4 from CE to CWE and value to be consistent with  |
+|PCD TF and rest of ACM TI.                                                |
+|Change table of OBR content to include OBR-29 as per the ACM TI updated   |
+|text for this cycle.                                                      |
+|Clarify datatype and content of OBX-3 of the second facet (alarm source)  |
+|in PCD-04 for technical alarms.                                           |
+|Clarify datatype and content of OBX-5 of the second facet (alarm source)  |
+|in PCD-04 for technical alarms.                                           |
+|Update PCD-04 examples to correct MSH-21.                                 |
+|Update PCD-04 examples to correct OBR-4.                                  |
+|Updated PCD-04 examples to correct OBR-29.                                |
+|Update PCD-04 examples to correct the second facet OBX segment for        |
+|technical alarms.                                                         |
+|Corrected PCD-04 examples MSH-19 for PCD TF 3rd component correction from |
+|ISO659 to ISO639.                                                         |
+|                                                                          |
+
+
+Add the following to the end of Section 3.Z.1.1 – MSH-21 Message Profile
+Identifier, line 843
+
+
+
+The required values for components MSH-21.2 and MSH-21.3 are listed in the
+table.
+
+While values are required in components MSH-21.1 and MSH-21.2, the values
+listed in the table are proposed.
+
+
+
+Change table 3.Z.5-1 in Section 3.Z.5 OBR Observation Request Segment, line
+913
+
+Change SEQ row 4 as follows…
+
+      Len from 250 to 705
+
+      DT from CE to CWE
+
+
+
+Add the following to table 3.Z.5-1 in Section 3.Z.5 OBE Observation Request
+Segment,m line 913
+
+Add row at end of table…
+
+      SEQ = 29
+
+      Len = 855
+
+      DT = EIP
+
+      OPT = R
+
+      RP/# = blank
+
+      TBL# = blank
+
+      ITEM # = 00261
+
+      ELEMENT NAME = Parent
+
+
+
+Change the following in Section 3.Z.5 OBR Observation Request Segment, line
+923
+
+
+
+Change
+
+      OBR-4 Universal Service Identifier (CE) 00238
+
+to
+
+      OBR-4 Universal Service Identifier (CWE) 00238
+
+
+
+Change the following in Section 3.Z.5 OBR Observation Request Segment, line
+924
+
+
+
+Change
+
+This field contains the identifier code for the packaged message content
+type, ALARM,
+
+WAVEFORM, EVENT, PROCEDURE, TREND, etc.
+
+
+
+to
+
+This field contains the identification of the packaged message content,
+ALARM^ALARM.
+
+
+
+Change the following in Section 3.Z.7.5 OBX-5 Observation Value (varies)
+00573, line 1522
+
+
+
+To be consistent with the rest of the OBX-based facet values in the ACM TI,
+change the paragraph at line 1550 under Facet 2. Source identification from
+
+
+For a technical alarm, this facet specifies the subsystem that is the
+source of the event by its
+MDC object code in OBX-5 Observation Value, and by its dotted sub-ID
+notation according to the DEC specification for OBX-4 Observation Sub-ID.
+
+
+
+to
+
+
+For a technical alarm, this facet specifies in OBX-3 the value
+ALARM_SOURCE^ALARM_SOURCE and in OBX-5 Observation Value the subsystem that
+is the alarm source, and by its dotted sub-ID notation according to the DEC
+specification for OBX-4 Observation Sub-ID.
+
+In Appendix ‘X’ Example Messages, replace the Numeric Alarm, starting at
+line 1710, with the following (changed values are bolded) [ the start of
+the OBR segment was missing a line break]
+
+MSH|^~\&|MINDRAY_EGATEWAY^00A037EB2175780F^EUI-
+64|MINDRAY|AM_PHILIPS_IEM|PHILIPS|20120111150457-
+0600||ORU^R40^ORU_R40|1|P|2.6|||NE|AL||UNICODE UTF-8|||IHE_PCD_ACM_001^IHE
+PCD^1.3.6.1.4.1.19376.1.6.1.4.1^ISO
+PID|||HO2009001^^^Hospital^PI||Hon^Albert^^^^^L||18991230|M
+PV1||I|HO Surgery^OR^1
+OBR|1|1^MINDRAY_EGATEWAY^00A037EB2175780F^EUI-
+64|1^MINDRAY_EGATEWAY^00A037EB2175780F^EUI-64|ALARM^ALARM|||20120111150457-
+0600||||||||||||||||||||||^1&MINDRAY_EGATEWAY&00A037EB2175780F&EUI-64
+OBX|1|ST|196670^MDC_EVT_LO^MDC|1.3.1.150456.1|Low
+SpO2|||L~PM~SP|||R|||20120111150457-
+0600||||F1519EFX^SHENZHEN_DEVICE^mindray.com^DNS
+OBX|2|NM|150456^MDC_PULS_OXIM_SAT_O2^MDC|1.3.1.150456.2|88|262688^MDC_DI
+M_PERCENT^MDC|90-96||||R|||20120111150457-0600
+OBX|3|ST|EVENT_PHASE^EVENT_PHASE|1.3.1.150456.3|start||||||R
+OBX|4|ST|ALARM_STATE^ALARM_STATE|1.3.1.150456.4|active||||||R
+
+
+
+In Appendix ‘X’ Example Messages, replace the Qualitative Alarm, Infusion
+Pump, Fluid Line Occlusion, Alarm Indication Start, starting at line 1730,
+with the following (changed values are bolded)
+
+MSH|^~\&|PAT_DEVICE_BBRAUN^0012211839000001^EUI-
+64|BBRAUN|AM_Philips_IEM|Philips|20120109175417-
+0600||ORU^R40^ORU_R40|6346172845752460251|P|2.6|||NE|AL||ASCII|EN^English^IS
+O639||
+IHE_PCD_ACM_001^IHE PCD^1.3.6.1.4.1.19376.1.6.1.4.1^ISO
+PID|||HO2009003^^^AA1^PI||Hon^Amy^^^^^L|Coburn^^^^^^L|19610301000000-0600|F
+PV1||I|HO 3 West ICU^10^1
+OBR|1|634617284575713662^PAT_DEVICE_BBRAUN^0012211839000001^EUI-
+64|P6013_4^PAT_DEVICE_BBRAUN^0012211839000001^EUI-
+64|ALARM^ALARM|||20120109175417-0600
+||||||||||||||||||||||^E0001_27&PAT_DEVICE_BBRAUN&0012211839000001&EUI-64
+OBX|1|CWE|196616^MDC_EVT_ALARM^MDC|1.0.0.0.1|196940^MDC_EVT_FLUID_LINE_OCCL^
+MDC^^^^^^Occlusion|||ST|||R|||||||P6013^^0012210000000000^EUI-64
+OBX|2|CWE|ALARM_SOURCE^ALARM_SOURCE|1.0.0.0.2|
+69985^MDC_DEV_PUMP_INFUS_MDS^MDC||||||X|||20120109175417-0600
+OBX|3|ST|EVENT_PHASE^EVENT_PHASE|1.0.0.0.3|start||||||R
+OBX|4|ST|ALARM_STATE^ALARM_STATE|1.0.0.0.4|active||||||R
+
+
+
+In Appendix ‘X’ Example Messages, replace the Qualitative Alarm, Infusion
+Pump, Fluid Line Occlusion, Alarm Indication End, starting at line 1747,
+with the following (changed values are bolded)
+
+
+MSH|^~\&|PAT_DEVICE_BBRAUN^0012211839000001^EUI-
+64|BBRAUN|AM_Philips_IEM|Philips|20120109175426-
+0600||ORU^R40^ORU_R40|6346172846620706282|P|2.6|||NE|AL||ASCII|EN^English^IS
+O639||
+IHE_PCD_ACM_001^IHE PCD^1.3.6.1.4.1.19376.1.6.1.4.1^ISO
+PID|||HO2009003^^^AA1^PI||Hon^Amy^^^^^L|Coburn^^^^^^L|19610301000000-
+0600|F
+PV1||I|HO 3 West ICU^10^1
+OBR|1|634617284662070628^PAT_DEVICE_BBRAUN^0012211839000001^EUI-
+64|P6013_4^PAT_DEVICE_BBRAUN^0012211839000001^EUI-
+64|ALARM^ALARM|||20120109175426-
+0600||||||||||||||||||||||^E0001_27&PAT_DEVICE_BBRAUN&0012211839000001&EUI-
+64
+OBX|1|CWE|196616^MDC_EVT_ALARM^MDC|1.0.0.0.1|196940^MDC_EVT_FLUID_LINE_OCCL^
+MDC^^^^^^Occlusion|||ST|||R|||||||P6013^^0012210000000000^EUI-64
+OBX|2|CWE|ALARM_SOURCE^ALARM_SOURCE|1.0.0.0.2|69985^MDC_DEV_PUMP_INFUS_MDS^M
+DC||||||X|||20120109175426-0600
+OBX|3|ST|EVENT_PHASE^EVENT_PHASE|1.0.0.0.3|end||||||R
+OBX|4|ST|ALARM_STATE^ALARM_STATE|1.0.0.0.4|inactive||||||R
+

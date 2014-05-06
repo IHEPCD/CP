@@ -1,0 +1,110 @@
+
+
+                             IHE Change Proposal
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-064                          |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |20122-05-22                         |
+|Person assigned:                    |John Rhoads                         |
+
+                    Change Proposal Summary information:
+|Editorial Update – Implantable, Manufacturer                              |
+|Submitter’s Name(s) and e-mail      |Stephen Swanson (sswanson@sjm.com)  |
+|address(es):                        |Gene Hageman                        |
+|                                    |(gene.hageman@medtronic.com)        |
+|                                    |Alexander Kraus                     |
+|                                    |(alexander.kraus@biotronik.com)     |
+|                                    |Ken Hoyme (ken.hoyme@bsci.com)      |
+|Submission Date:                    |April 05, 2012                      |
+|Integration Profile(s) affected:    |Implantable Device – Cardiac –      |
+|                                    |Observation                         |
+|Actor(s) affected:                  |None                                |
+|IHE Technical Framework or          |IHE Patient Care Device (PCD)       |
+|Supplement modified:                |Technical Framework; Volume 1;      |
+|                                    |Revision 1.0; August 12, 2011       |
+|Volume(s) and Section(s) affected:  |Volume 1 (PCD TF-1); Section 6,     |
+|                                    |Section 6.5                         |
+|Rationale for Change:                                                     |
+|This change request is to update wording in this section by adding the    |
+|word “implantable” to be more specific that this profile deals with       |
+|implantable devices only and not similar surface-mounted systems.         |
+|Also changing the word “vendor” to “manufacturer” to be specific about who|
+|is the IDC-Reporter providing this data to IDC-Consumers.                 |
+
+
+Proposed Changes:
+
+Replace Section 6 by the following:
+
+6 Implantable Device – Cardiac – Observation (IDCO)
+
+
+Cardiac physicians follow patients with implantable cardiac devices from
+multiple vendor manufacturers. These devices are categorized as implantable
+pacemakers, cardioverter defibrillators, cardiac resynchronization therapy,
+and implantable cardiac monitor devices. As part of patient follow-up an
+interrogation of an implanted cardiac device is performed (either in-clinic
+or remotely from a patient’s residence). These initial device
+interrogations (solicited or unsolicited) are typically performed by
+manufacturer provided interrogation vendor proprietary equipment using
+manufacturer specific protocol. Information is collected regarding the
+system (attributes, settings and status), the patient (demographics and
+observations) and therapy (delivery and results).
+
+To improve workflow efficiencies cardiology and electrophysiology practices
+require the management of “key” information in a central system such as an
+EHR or a device clinic management system.
+
+To address this requirement, the Implantable Device – Cardiac – Observation
+(IDCO) Profile defines a standard-based translation and transfer of summary
+device interrogation information from the manufacturer provided
+interrogation system equipment to the information management system.
+
+The IDCO profile specifies a mechanism for the translation, transmission,
+processing, and storage of discrete data elements and report attachments
+associated with cardiac device interrogations (observations).
+
+
+
+
+
+Replace Section 6.5 by the following:
+
+6.5 IDCO Patient Identification Considerations
+
+
+This profile assumes a pre-coordinated association of identifiers across
+the two Patient Identifier Domains: the device vendor manufacturer systems
+providing the observations and the clinics receiving the observations.
+
+Depending on local regulations each implantable cardiac device vendor
+manufacturer may be obligated to maintain a registry that maps a unique
+device identifier with the patient in which it is implanted.  In some
+locales this mapping is the strict responsibility of the implanting or
+other organization.  Specific patient identification information is
+typically not stored in the device but is made available in the registry or
+by other means.  Consequently the Implantable Device – Cardiac – Reporter
+is only required to send this identifier which represents the patient to
+device relationship for an implanted device as part of the [PCD-09]
+transaction.  This identifier by normative convention is the concatenation
+of a unique industry wide manufacturer id, unique manufacturer model
+number, and unique manufacturer serial number.
+
+This profile specifies one actor, the Implantable Device – Cardiac –
+Consumer, as the endpoint for observation messages. The Implantable Device
+– Cardiac – Consumer will have pre-coordinated a cross-reference of patient
+identifiers across the two Patient Identifier Domains.  This will be done
+by storing the unique device identifier within the patient’s record.  This
+will typically be the patient’s unique identity but could be the patient’s
+location in emergency situations.
+
+In some cases the Implantable Device – Cardiac – Reporter will have
+detailed patient identification information like name, address, etc.  In
+these cases the Implantable Device – Cardiac – Reporter can send this
+information as part of the [PCD-09] transaction.
+
+
+
+

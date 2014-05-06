@@ -1,0 +1,125 @@
+
+
+                             IHE Change Proposal
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Device                 |
+|Change Proposal ID:                 |CP-PCD-088                          |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |2013.04.19                          |
+|Person assigned:                    |Jeff Rinda / Todd Cooper / Dan Smith|
+
+                    Change Proposal Summary information:
+|Updates to Infusion Pump Event Communication (IPEC) Profile               |
+|Submitter’s Name(s) and e-mail      |Todd Cooper                         |
+|address(es):                        |<ToddCooperAFC@gmail.com>           |
+|Submission Date:                    |2013.04.19                          |
+|Integration Profile(s) affected:    |IPEC                                |
+|Actor(s) affected:                  |Device Observation Reporter, Device |
+|                                    |Observation Consumer                |
+|IHE Technical Framework or          |Revision 1.2, 2012-12-20            |
+|Supplement modified:                |                                    |
+|Volume(s) and Section(s) affected:  |Volume 2, Appendix X                |
+|Rationale for Change:                                                     |
+|Correct inconsistencies in the text                                       |
+|Update text per changes in the underlying terminology                     |
+
+
+Replace Section X.X by the following:
+
+or
+
+Add the following section after Section X.X:
+
+
+
+Replace last two rows in Table Table X.1.2.1-2
+
+
+|ATTRIBUTE   |CHANNEL    |MDCX_EVT_PUMP_|MDCX_EVT_PUMP_|MDCX_EVT_PUMP|
+|            |(S)ource,  |DELIV_START   |DELIV_STOP    |_DELIV_COMP  |
+|            |(D)elivery |              |              |             |
+|Drug Name   |S          |R             |R             |R            |
+|Concentratio|S          |O             |O             |O            |
+|n           |           |              |              |             |
+|Pump Mode   |D          |R             |R             |R            |
+|Pump Status |D          |R             |R             |R            |
+|Rate        |D          |R             |R             |R            |
+|            |S          |O             |O             |O            |
+|Dose Rate   |S          |O             |O             |O            |
+|Volume      |S          |O             |O             |O            |
+|Programmed  |           |              |              |             |
+|Volume      |S          |R             |R             |R            |
+|Remaining   |           |              |              |             |
+|Volume      |S          |O             |R             |R            |
+|Delivered   |           |              |              |             |
+|Cumulative  |S          |O             |O             |O            |
+|Volume      |           |              |              |             |
+|Delivered   |           |              |              |             |
+|Time        |S          |O             |O             |O            |
+|Remaining   |           |              |              |             |
+|Patient     |S (or      |O             |O             |O            |
+|Height      |Device     |              |              |             |
+|            |level)     |              |              |             |
+|Patient     |S (or      |O             |O             |O            |
+|Weight      |Device     |              |              |             |
+|            |level)     |              |              |             |
+|BSA (Body   |S (or      |O             |O             |O            |
+|Surface     |Device     |              |              |             |
+|Area)       |level)     |              |              |             |
+|<STATUS     |N/A        |N/A           |N/A           |N/A          |
+|enumeration:|           |              |              |             |
+|online,     |           |              |              |             |
+|offline>    |           |              |              |             |
+|<event time |N/A        |N/A           |N/A           |N/A          |
+|stamp>      |           |              |              |             |
+
+
+Replace last two rows in Table Table X.1.2.1-3
+
+
+|ATTRIBUTE  |CHANNEL     |MDCX_EVT_      |MDCX_EVT_PUMP_ |MDCX_EVT_PUMP_ |
+|           |(S)ource,   |COMM_STATUS_   |PROG_CLEARED   |AUTO_PROG_     |
+|           |(D)elivery  |CHANGE         |               |CLEARED        |
+|Drug Name  |S           |N/A            |O              |O              |
+|Concentrati|S           |N/A            |O              |O              |
+|on         |            |               |               |               |
+|Pump Mode  |D           |N/A            |O              |O              |
+|Pump Status|D           |N/A            |O              |O              |
+|Rate       |D           |N/A            |O              |O              |
+|           |S           |N/A            |O              |O              |
+|Dose Rate  |S           |N/A            |O              |O              |
+|Volume     |S           |N/A            |O              |O              |
+|Programmed |            |               |               |               |
+|Volume     |S           |N/A            |N/A            |O              |
+|Remaining  |            |               |               |               |
+|Volume     |S           |N/A            |N/A            |O              |
+|Delivered  |            |               |               |               |
+|Cumulative |S           |N/A            |O              |O              |
+|Volume     |            |               |               |               |
+|Delivered  |            |               |               |               |
+|Time       |S           |N/A            |O              |O              |
+|Remaining  |            |               |               |               |
+|Patient    |S (or Device|N/A            |O              |O              |
+|Height     |level)      |               |               |               |
+|Patient    |S (or Device|N/A            |O              |O              |
+|Weight     |level)      |               |               |               |
+|BSA (Body  |S (or Device|N/A            |O              |O              |
+|Surface    |level)      |               |               |               |
+|Area)      |            |               |               |               |
+|comm-status|N/A         |R              |R              |R              |
+|-offline,  |            |               |               |               |
+|comm-status|            |               |               |               |
+|-online    |            |               |               |               |
+|<event time|N/A         |R              |R              |R              |
+|stamp>     |            |               |               |               |
+
+
+
+
+
+
+
+
+

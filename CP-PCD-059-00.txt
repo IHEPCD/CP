@@ -1,0 +1,36 @@
+
+IHE Change Proposal
+
+
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-059                          |
+|Change Proposal Status:             |Ballot                              |
+|Date of last update:                |2011-06-13                          |
+|Person assigned:                    |                                    |
+
+                    Change Proposal Summary information:
+|Technical Framework Final Text Editorial Changes                          |
+|Submitter’s Name(s) and e-mail      |John Rhoads                         |
+|address(es):                        |(john.rhoads@philips.com)           |
+|Submission Date:                    |2011-06-13                          |
+|Integration Profile(s) affected:    |PIV, DEC                            |
+|Actor(s) affected:                  |                                    |
+|IHE Technical Framework or          |IHE Patient Care Device Technical   |
+|Supplement modified:                |Framework Volume 2 Transactions     |
+|Volume(s) and Section(s) affected:  |See below                           |
+|Rationale for Change:                                                     |
+|PIV HL7 Enhanced Acknowledgement Mode passed 2011 Connectathon and met    |
+|checklist criteria by Planning Committee vote, so integrated into Final   |
+|Text version. By request of some Technical Committee members, discussion  |
+|of OBX-4 Sub-id and supporting information edited for clarity.            |
+
+
+Specific proposed changes to text relative to version of 2011-04-01, which
+was previously balloted sucessfully, may be seen by viewing file
+IHE_PCD_TF_Vol2_FT_2011-06-13TrackChanges.doc with Microsoft Word Track
+Changes tool active.
+
+

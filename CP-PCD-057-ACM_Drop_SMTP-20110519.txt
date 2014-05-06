@@ -1,0 +1,72 @@
+
+
+                             IHE Change Proposal
+                            Tracking information:
+|IHE Domain                          |PCD Patient Care Devices            |
+|Change Proposal ID:                 |CP-PCD-057-00                       |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |2011-05-19                          |
+|Person assigned:                    |(assigned by Domain Technical       |
+|                                    |Committee)                          |
+
+                    Change Proposal Summary information:
+|ACM CP Drop SMTP as AM to AC actor protocol option for PCD-06 and PCD-07  |
+|transactions                                                              |
+|Submitter’s Name(s) and e-mail      |Monroe Pattillo, Philips Emergin,   |
+|address(es):                        |monroe.pattillo@philips.com         |
+|Submission Date:                    |2011-05-19                          |
+|Integration Profile(s) affected:    |Alarm Communication Management (ACM)|
+|Actor(s) affected:                  |Alarm Manager (AM), Alarm           |
+|                                    |Communicator (AC)                   |
+|IHE Technical Framework or          |Still a Supplement at Trial         |
+|Supplement modified:                |Implementation Status, not yet in   |
+|                                    |Technical Framework                 |
+|Volume(s) and Section(s) affected:  |Not applicable                      |
+|Rationale for Change:                                                     |
+|In 2010 modifications were approved to the ACM trial implementation       |
+|supplement to permit and prefer use of the WCTP protocol for AM to AC     |
+|actor communication for the PCD-06 and PCD-07 transactions.  The use of   |
+|WCTP was verified at the 2011 Connecation with two AM and two AC          |
+|implementations, no AM or AC vendors required use of the SMTP option,     |
+|since it is the preference WCTP is to be the only accepted AM to AC       |
+|communication protocol.  SMTP can now be removed from the ACM profile     |
+|trial implementation and WCTP is the only choice the AM to AC protocol    |
+|option can be removed from Gazelle before 2012 Connectathon registration. |
+|                                                                          |
+
+
+Line 215 page 8 table X.2-1 remove rows identifying SMTP as a protocol
+option for AM to AC communications for the PCD-06 and PCD-07 transactions.
+As WCTP is now the only accepted protocol for AM to AC communication,
+remove the option from the ACM profile trial implementation and Gazelle
+before Connectathon registration.
+
+Line 220, 361, 370, and 382 remove references to SMTP as a protocol option.
+
+Lines 403-417 remove paragraphs discussing SMTP as a protocol option.
+
+Line 622 remove reference to SMTP as a protocol option.
+
+Line 628 remove paragraph discussing SMTP as a protcol option.
+
+Lines 639 and 648 remove references to SMTP as a protocol option.
+
+Line 654 change reference from SMTP to WCTP as container of the message
+text.
+
+Line 676 remove reference to SMTP as a protocol option.
+
+Lines 679-681 remove paragraph referencing SMTP as a protocol option.
+
+Line 688 remove reference to SMTP as a protocol option.
+
+Line 694, table, first detail row, remove reference to SMTP as a protocol
+option.
+
+Line 720 remove reference to SMTP as a protocol option.
+
+
+
+
+
+

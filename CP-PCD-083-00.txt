@@ -1,0 +1,34 @@
+
+
+
+Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-083-00                       |
+|Change Proposal Status:             |Ballot                              |
+|Date of last update:                |2012-06-08                          |
+|Person assigned:                    |John Rhoads                         |
+
+Change Proposal Summary information:
+|Add notes to TF vol. 2 referencing information in Device Specialization - |
+|Infusion Pump                                                             |
+|Submitter’s Name(s) and e-mail      |Todd Cooper                         |
+|address(es):                        |                                    |
+|Submission Date:                    |2012-06-08                          |
+|Integration Profile(s) affected:    |PIV                                 |
+|Actor(s) affected:                  |IOP, IOC                            |
+|IHE Technical Framework or          |IHE Patient Care Device (PCD)       |
+|Supplement modified:                |Technical Framework; Volume 2;      |
+|                                    |Revision 1.0; August 12, 2011       |
+|Volume(s) and Section(s) affected:  |Vol. 2, Section                     |
+|Rationale for Change:                                                     |
+|To reflect the availability of new information related to PIV in Device   |
+|Specialization – Infusion Pump, insert cross references to it.            |
+
+
+Add after first paragraph of
+
+Note: see related detail on infusion pump device models and data models in
+the Device Specialization – Infusion Pump PCD profiles for large volume
+pumps, syringe pumps and patient controlled analgesia.
+
+

@@ -1,0 +1,101 @@
+
+
+                             IHE Change Proposal
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-070-0                        |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |8-12-2011                           |
+|Person assigned:                    |John Rhoads                         |
+
+                    Change Proposal Summary information:
+|Clarification for OBX segments with CWE data types                        |
+|Submitter’s Name(s) and e-mail      |Stephen Swanson (sswanson@sjm.com)  |
+|address(es):                        |Gene Hageman                        |
+|                                    |(gene.hageman@medtronic.com)        |
+|                                    |Alexander Kraus                     |
+|                                    |(alexander.kraus@biotronik.com)     |
+|                                    |Ken Hoyme (ken.hoyme@bsci.com)      |
+|Submission Date:                    |June 13, 2012                       |
+|Integration Profile(s) affected:    |Implantable Device – Cardiac –      |
+|                                    |Observation                         |
+|Actor(s) affected:                  |None                                |
+|IHE Technical Framework or          |IHE Patient Care Device (PCD)       |
+|Supplement modified:                |Technical Framework; Volume 2;      |
+|                                    |Revision 1.0; August 12, 2011       |
+|Volume(s) and Section(s) affected:  |Volume 2 (PCD TF-2); Section        |
+|                                    |3.9.4.1.2.5                         |
+|Rationale for Change:                                                     |
+|There was confusion on what values should be contained in the OBX-5 fields|
+|when the Value Type (OBX-2) is Coded With Exceptions (CWE). The Change    |
+|Proposal clarifies the intended use of this field.                        |
+
+
+Proposed Changes:
+
+Replace the text defining the use of OBX-3 with the following:
+
+OBX-3.1 Observation Identifier, Identifier shall be <Code> [numeric] as
+defined in Annex C.3 ‘Expanded Terms’ of IEEE 11073-10103 (see 3.9.3
+Referenced Standards).
+
+OBX-3.2 Observation Identifier, shall be  <Reference ID> as defined in
+Annex C.3 ‘Expanded Terms’ in IEEE 11073-10103 (see 3.9.3 Referenced
+Standards)
+
+OBX-3.3 Observation Identifier, Name of Coding System shall be MDC to
+reference the group of medical device communication standards (IEEE 11073-
+xxxxx)
+
+
+
+Replace the text defining the use of OBX-5 with the following:
+
+OBX-5 Observation Value – This is the actual value of the observation.
+
+If OBX-2 is of type CWE then
+
+  OBX-5.1 shall be <Code> [numeric] as defined in Annex D.3 ‘enumerations’
+  or Annex E.3 ‘vendor enumerations’ of IEEE 11073-10103 (see 3.9.3
+  Referenced Standards) .
+
+  OBX-5.2 shall be  <Enumerator Identifier>_<EnumerationCode [mnemonic]> as
+  defined in Annex D.3 ‘enumerations’ or Annex E.3 ‘vendor enumerations’ in
+  IEEE 11073-10103 (see 3.9.3 Referenced Standards)
+
+  OBX-5.3 shall be MDC to reference the group of medical device
+  communication standards (IEEE 11073-xxxxx)
+
+  OBX-5.9 can contain the according Display Name as defined in Annex D.3
+  ‘enumerations’ or Annex E.3 ‘vendor enumerations’ of IEEE 11073-10103
+  (see 3.9.3 Referenced Standard) or an equivalent (maybe more compact)
+  localized display name. If the vendor has implemented vendor-specific
+  extensions (per IEEE 11073-10103 Sections 8 and A.4) than OBX-5.9 is
+  required.  This display name should only be used by the receiving system
+  as a reference or if the Identifier in OBX-5.1 is unknown to the receiver
+  (e.g. for proprietary vendor content). Generation and localization of
+  display names in the receiving system shall always be preferred.
+
+
+
+
+OBX-5 Observation Value – This is the actual value of the observation.
+
+
+
+
+ If OBX-2 is of type CWE then
+
+  OBX-5.1 shall be an enumeration code [mnemonic] as defined in Annex D.3
+  ‘enumerations’ or Annex E.3 ‘vendor enumerations’ of IEEE 11073-10103
+  version 1.05.02 (10/04/2011) and
+  OBX-5.2 can contain the according display name as defined in Annex D.3
+  ‘enumerations’ or Annex E.3 ‘vendor enumerations’ of IEEE 11073-10103
+  version 1.05.02 (10/04/2011) or an equivalent display name in another
+  language.
+
+
+
+
+

@@ -1,0 +1,24 @@
+
+
+
+Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-080-00                       |
+|Change Proposal Status:             |Ballot                              |
+|Date of last update:                |2012-06-08                          |
+|Person assigned:                    |John Rhoads                         |
+
+Change Proposal Summary information:
+|PCD-02: Define a fused Device Observation Filter Reporter                 |
+|Submitter’s Name(s) and e-mail      |                                    |
+|address(es):                        |                                    |
+|Submission Date:                    |                                    |
+|Integration Profile(s) affected:    |                                    |
+|Actor(s) affected:                  |                                    |
+|IHE Technical Framework or          |                                    |
+|Supplement modified:                |                                    |
+|Volume(s) and Section(s) affected:  |                                    |
+|Rationale for Change:                                                     |
+
+
+

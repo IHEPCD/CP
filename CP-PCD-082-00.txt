@@ -1,0 +1,46 @@
+
+
+
+Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-082-00                       |
+|Change Proposal Status:             |Ballot                              |
+|Date of last update:                |2012-06-08                          |
+|Person assigned:                    |John Rhoads                         |
+
+Change Proposal Summary information:
+|Clarify sequencing of static containment in PCD-01                        |
+|Submitter’s Name(s) and e-mail      |Todd Cooper                         |
+|address(es):                        |                                    |
+|Submission Date:                    |2012-03-06                          |
+|Integration Profile(s) affected:    |DEC and other profiles including OBX|
+|                                    |segments                            |
+|Actor(s) affected:                  |General                             |
+|IHE Technical Framework or          |IHE Patient Care Device (PCD)       |
+|Supplement modified:                |Technical Framework; Volume 2;      |
+|                                    |Revision 1.0; August 12, 2011       |
+|Volume(s) and Section(s) affected:  |Vol. 2, Section .8                  |
+|Rationale for Change:                                                     |
+|The subsection for OBX-4 Sub-Id in section B.8 explains the order for     |
+|metric observations, but does not mention device-related segments, so an  |
+|explanation of order for device-related segments is added.                |
+
+
+Insert the following paragraph after line 1855:
+
+This ‘dictionary order’ should also be applied to device-related as well as
+to metric OBX segments: all MDS device-related segments for the first
+device should precede all VMD device-related segments for the first VMD of
+the first device, which in turn should precede any channel device-related
+segment(s) for the first channel, if any, of the first device (recall that
+channels are optional), and any channel segments should precede all the
+metric OBX segments of the first VMD and channel of the first device. The
+the order goes to the second channel of the first VMD if any, and so on
+until the contents of all the channels of the first VMD have been given,
+then device-related segments for the second VMD, and so on in a similar
+fashion. (This is in effect a depth-first traversal of the 11073
+“containment tree” of the objects in the device).
+
+
+
+

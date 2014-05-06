@@ -1,0 +1,127 @@
+
+IHE Change Proposal
+
+
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Device (PCD).          |
+|Change Proposal ID:                 |CP-PCD-055                          |
+|Change Proposal Status:             |Ballot                              |
+|Date of last update:                |12April2011                         |
+|Person assigned:                    |John Rhoads                         |
+
+                    Change Proposal Summary information:
+|Add TQ1 segment to the PCD-03 message spec                                |
+|Submitter’s Name(s) and e-mail      |Brad Lunde;                         |
+|address(es):                        |bradley.lunde@carefusion.com        |
+|Submission Date:                    |12April2011                         |
+|Integration Profile(s) affected:    |PIV                                 |
+|Actor(s) affected:                  |IOC and IOP                         |
+|IHE Technical Framework or          |Revision 1.2; September 30, 2010    |
+|Supplement modified:                |                                    |
+|Volume(s) and Section(s) affected:  |Volume 2                            |
+|Rationale for Change:                                                     |
+|Some drugs can be ordered with a total dose (g, mg, mcg/kg, etc) and a    |
+|duration.  The infuser should be able to get these two parameters and     |
+|calculate a rate.                                                         |
+
+
+Update row 43 in Table 3.3.4.2 RGV^O15^RGV_O15 Pharmacy/Treatment Give
+Message:
+
+3.3.4.2   RGV^O15^RGV_O15 Pharmacy/Treatment Give Message
+
+|Segment           |Meaning                          |Usage  |Card   |HL7 Chapter |
+|MSH               |Message Header                   |R      |[1..1] |2           |
+|[{ SFT }]         |Software                         |X      |       |2           |
+|[{ NTE }]         |Notes and Comments (for Header)  |X      |       |2           |
+|[                 |--- PATIENT begin                |       |       |            |
+|      PID         |Patient Identification           |R      |[1..1] |3           |
+|   [{ NTE }]      |Notes and Comments (for PID)     |X      |       |2           |
+|   [{ AL1 }]      |Allergy Information              |X      |       |2           |
+|   [              |--- PATIENT_VISIT begin          |       |       |            |
+|         PV1      |Patient Visit                    |O      |       |3           |
+|      [  PV2  ]   |Patient Visit – Additional Info  |X      |       |3           |
+|   ]              |--- PATIENT_VISIT end            |       |       |            |
+|]                 |--- PATIENT end                  |       |       |            |
+|{                 |--- ORDER begin                  |       |       |            |
+|      ORC         |Common Order                     |R      |[1..1] |4           |
+|   [{             |--- TIMING begin                 |       |       |            |
+|         TQ1      |Timing/Quantity                  |X      |       |4           |
+|      [{ TQ2 }]   |Timing/Quantity Order Sequence   |X      |       |4           |
+|   }]             |--- TIMING end                   |       |       |            |
+|   [              |--- ORDER_DETAIL begin           |       |       |            |
+|         RXO      |Pharmacy /Treatment Order        |X      |       |4           |
+|      [           |--- ORDER_DETAIL_SUPPLEMENT begin|       |       |            |
+|         {  NTE  }|Notes and Comments (for RXO)     |X      |       |2           |
+|         {  RXR  }|Pharmacy/Treatment Route         |X      |       |4           |
+|         [{       |--- COMPONENTS begin             |       |       |            |
+|               RXC|Pharmacy/Treatment Component     |X      |       |4           |
+|            [{ NTE|Notes and Comments (for each RXC)|X      |       |2           |
+|}]                |                                 |       |       |            |
+|         }]       |--- COMPONENTS end               |       |       |            |
+|      ]           |--- ORDER_DETAIL_SUPPLEMENT end  |       |       |            |
+|   ]              |--- ORDER_DETAIL end             |       |       |            |
+|   [              |--- ENCODING begin               |       |       |            |
+|         RXE      |Pharmacy/Treatment Encoded Order |X      |       |4           |
+|      {           |--- TIMING_ENCODED begin         |       |       |            |
+|            TQ1   |Timing/Quantity                  |X      |       |4           |
+|         [{ TQ2 }]|Timing/Quantity Order Sequence   |X      |       |4           |
+|      }           |--- TIMING_ENCODED end           |       |       |            |
+|      {  RXR  }   |Pharmacy/Treatment Route         |X      |       |4           |
+|      [{ RXC }]   |Pharmacy/Treatment Component     |X      |       |4           |
+|   ]              |--- ENCODING end                 |       |       |            |
+|   {              |--- GIVE begin                   |       |       |            |
+|         RXG      |Pharmacy/Treatment Give          |R      |[1..1] |4           |
+|      {           |--- TIMING_GIVE begin            |       |       |            |
+|            TQ1   |Timing/Quantity                  |XO     |[0..1] |4           |
+|         [{ TQ2 }]|Timing/Quantity Order Sequence   |X      |       |4           |
+|      }           |--- TIMING_GIVE end              |       |       |            |
+|      {  RXR  }   |Pharmacy/Treatment Route         |R      |[1..1] |4           |
+|      [{ RXC }]   |Pharmacy/Treatment Component     |X      |       |4           |
+|      {           |--- OBSERVATION begin            |       |       |            |
+|         [  OBX  ]|Observation/Results              |R      |[1..3] |7           |
+|         [{ NTE }]|Notes and Comments (for OBX)     |X      |       |2           |
+|      }           |--- OBSERVATION end              |       |       |            |
+|   }              |--- GIVE end                     |       |       |            |
+|}                 |--- ORDER end                    |       |       |            |
+
+
+
+
+Add the following section after Section 3.3.4.4.5:
+
+X.X.X.X.X.X TQ1 Timing Quantity Segment
+
+This segment is an optional segment which allows the IOP to specify the
+duration of the infusion order.  Along with the ordered dose (RXG.18) the
+infuser can then calculate the rate at which the infusion should be run.
+Not all IOCs will be able to support duration based infusions even vendors
+that do support will have limits on the types of infusions which support
+duration see each vendors implementation guide for further details.
+
+
+|SEQ           |LEN                              |
+|Hour          |2240&MDC_DIM_HR&MDC              |
+|Minute        |2208&MDC_DIM_MIN&MDC             |
+|Second        |2176&MDC_DIM_SEC&MDC             |
+
+
+
+      Examples:
+
+      90 Seconds:
+      90^2176&MDC_DIM_SEC&MDC
+
+
+
+      2 Hours 45 Minutes:
+      2^2240&MDC_DIM_HR&MDC~45^2208&MDC_DIM_MIN&MDC
+
+TQ1-14  Total occurrence’s
+
+      See HL7 v2.6 Section 4.5.4.14 for details.  The PCD TF does not
+      further constrain this field.
+
+

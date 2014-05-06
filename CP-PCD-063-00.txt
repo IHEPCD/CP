@@ -1,0 +1,50 @@
+
+IHE Change Proposal
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-063                          |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |May 5, 2012                         |
+|Person assigned:                    |Ken Fuchs                           |
+
+
+                    Change Proposal Summary information:
+|WCM Document Changes                                                      |
+|Submitter’s Name(s) and |Ken Fuchs; ken.fuchs@ieee.org                    |
+|e-mail address(es):     |                                                 |
+|Submission Date:        |May 22, 2012                                     |
+|Integration Profile(s)  |WCM                                              |
+|affected:               |                                                 |
+|Actor(s) affected:      |DOR, DOC, AR, AC                                 |
+|IHE Technical Framework |WCM Trial Implementation                         |
+|or Supplement modified: |                                                 |
+|Volume(s) and Section(s)|Previous Version:                                |
+|affected:               |IHE_PCD_TF_Supplement_Waveform_Content_Message_WC|
+|                        |M_TI_FINAL_r0.5                                  |
+|                        |Current Version:                                 |
+|                        |IHE_PCD_Suppl_Waveform_Content_Module_WCM_TI_Rev2|
+|                        |.0_2012-05-05                                    |
+|Rationale for Change:                                                     |
+|After the initial release of the WCM document for Trial Implementation    |
+|numerous issues were discovered, which resulted in a major edit of the    |
+|document.                                                                 |
+
+
+Major changes include:
+
+    • Various - Changed title to Waveform Content Module from Waveform
+      Communications Message
+
+    • X.Y.2.1 - Scheme for optimization of waveform data transmission which
+      allows reuse of attributes
+
+    • X.Y.3 - Use of the OBR segment to group waveforms
+
+    • X.Y.3 - Handling of continuous as well as time-bounded waveforms
+
+Changes are distributed througout the document.  Specific changes are too
+numerous to be ennumerated in this CP.  We recommend reviewing the changes
+in the document itself through the use of the Microsoft Word Review
+functionality (track changes were on for all edits.)

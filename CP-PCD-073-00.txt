@@ -1,0 +1,84 @@
+
+
+                             IHE Change Proposal
+
+
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-073-00                       |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |06/05/2012                          |
+|Person assigned:                    |Al Englebert                        |
+
+                    Change Proposal Summary information:
+|Clarification of MSA-1 (Acknowledgment Code) Values in PCD-03             |
+|Submitter’s Name(s) and e-mail      |Al Engelbert (al@ProtoLink.com)     |
+|address(es):                        |                                    |
+|Submission Date:                    |06/05/2012                          |
+|Integration Profile(s) affected:    |Point-of-Care Infusion Verification |
+|                                    |(PIV)                               |
+|Actor(s) affected:                  |None                                |
+|IHE Technical Framework or          |Technical Framework Revision 1.0 –  |
+|Supplement modified:                |Final Text (08/12/2011)             |
+|Volume(s) and Section(s) affected:  |Volume 2, Section 3.3.4.4.9         |
+|                                    |(Expected Actions)                  |
+|Rationale for Change:                                                     |
+|To provide guidance on the appropriate values to use in MSA-1             |
+|(Acknowledgment Code) in the PCD-03 (Communicate Infusion Order)          |
+|transaction.                                                              |
+|                                                                          |
+
+
+Replace Section 3.3.4.4.9 with the following:
+
+
+
+The Pharmacy/Treatment Give Message (RGV^O15^RGV_O15) is sent from the
+Infusion Order Programmer to the Infusion Order Consumer.
+
+The receiving system validates the message and responds with an accept
+acknowledgment message (ACK^O15^ACK).  If an error condition is detected
+and if MSH-16 (Application Acknowledgement Type) in the RGV^O15^RGV_O15
+message is valued as "ER" or "AL", the IOC responds with a
+Pharmacy/Treatment Give Acknowledgment Message (RRG^O16^RRG_O16).
+
+If the message passes review is accepted by the IOC, the accept
+acknowledgment will contain the value CA in MSA-1.  If not, the accept
+acknowledgment will contain either CR or CE, based upon HL7 enhanced
+acknowledgment rules (see HL7 v2.6, Section 2.9.3.2).
+
+Message acceptance is based on:
+
+    • All required segments and fields are present
+    • No incorrect data types are present.
+    • Validation of fields that must contain specific values as defined in
+      the Technical Framework (e.g., MSH-21 must be
+      "1.3.6.1.4.1.19376.1.6.1.3.1").
+
+If MSH-16 (Application Acknowledgement Type) is valued as "ER" or "AL", the
+IOC may report an application acknowledgement error using the
+Pharmacy/Treatment Give Acknowledgement Message (RRG^O16^RRG_O16) for
+errors such as:
+    • Unknown device
+    • Dose/rate and volume are not within vendor parameters for the device
+      type.
+    • Drug is not present in onboard library.
+
+If the message from the Infusion Order Programmer is rejected, the
+acknowledgement will contain the value AR or AE in MSA-1, based upon HL7
+enhanced acknowledgment rules (see HL7 v2.6, Section 2.9.2.2).  The reason
+for rejection is provided in the ERR segment.
+
+Once the programming information is received by the pump, the clinician may
+choose to do one
+of the following: (1) confirm the settings on the pump and then start the
+infusion, (2) enter or modify one or more settings and then start the
+infusion, or (3) cancel the program altogether.
+
+Once the infusion is started, the settings actually programmed as well as
+the current state of the infusion can be obtained using the PCD-01
+(Communicate PCD Data) transaction.
+
+

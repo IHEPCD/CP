@@ -1,0 +1,105 @@
+
+
+                             IHE Change Proposal
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-091-00                       |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |2013-04-02                          |
+|Person assigned:                    |(assigned by Domain Technical       |
+|                                    |Committee)                          |
+
+                    Change Proposal Summary information:
+
+|Revise reference to MSH-15 and MSH-16 for PCD-01 in Appendix B.1 to state:|
+|For MSH-15 “In PCD-01 transactions, this field shall be valued as AL”     |
+|For MSH-16 “In PCD-01 transactions, this field shall be valued as NE”     |
+|Remove the sentence “Note that the combination of MSH-16 valued as AL and |
+|MSH-15 valued as NE is consistent with the original acknowledgement rules |
+|used in other IHE TFs.”                                                   |
+|Submitter’s Name(s) and e-mail      |Chris Courville – ccourvil@epic.com |
+|address(es):                        |                                    |
+|Submission Date:                    |2013-04-02                          |
+|Integration Profile(s) affected:    |DEC, POI                            |
+|Actor(s) affected:                  |DOR, DOC                            |
+|IHE Technical Framework or          |Technical Framework, Final Text     |
+|Supplement modified:                |                                    |
+|Volume(s) and Section(s) affected:  |Volume 2, Appendix B.1 (and likely  |
+|                                    |should be added to Section 3.1.4 in |
+|                                    |a new MSH section)                  |
+|Rationale for Change:                                                     |
+|The current text in Appendix B.1 states that MSH-15 should be “NE” and    |
+|MSH-16 “AL” but this is inconsistent with the expected behavior for the   |
+|DOC.                                                                      |
+|If the DOC were to actually follow HL7 for these values, the DOC would    |
+|send an enhanced ack back to the DOR on a separate port. From HL7: If the |
+|message header segment indicates that the initiating system also requires |
+|an application acknowledgment, this will be returned as the initial       |
+|message of a later exchange.                                              |
+|However, this is not the desired behavior at all, nor is this extra       |
+|enhanced ack defined anywhere in the techincal framework for PCD-01       |
+|messages.                                                                 |
+|The expected behavior is actualy for the DOC to send back an Accept       |
+|Acknowledgement, but since this TF states that the DOR sends NE/AL that   |
+|Accept Acknowldgement ends up having to contain AA because that’s what the|
+|Enhanced Acknowledgement’s value should be.                               |
+|Appendix B should instead say that MSH-15 should be “AL” and MSH-16 “NE”  |
+|to be consistent with what is actually expected by the DORs.              |
+
+
+Appendix B of TF Volume 2 should be changed to require MSH-15 as AL and MSH-
+16 as NE for PCD-01 transactions
+
+Replace Section Appendix B.1 MSH-15 by the following:
+
+MSH-15 Accept Acknowledgement Type
+
+      Definition: This field identifies the conditions under which accept
+      acknowledgments are required to be returned in response to this
+      message. Required. Refer to HL7 Table 0155  Accept/application
+      acknowledgment conditions for valid values. The receiving system must
+      send (or not send) acknowledgements as specified by this field.
+
+      In PCD-01 transactions, this field shall be valued as NEAL.
+
+      In PCD-03 transactions, see Section 3.3.4.4.1
+
+Replace Section Appendix B.1 MSH-16 by the following:
+MSH-16 Application Acknowledgement Type
+
+      Definition: This field identifies the conditions under which
+      application acknowledgments are required to be returned in response to
+      this message. Required for enhanced acknowledgment mode. Refer to HL7
+      Table 0155 - Accept/application acknowledgment conditions for valid
+      values. The PCD TF requires that this field be valued as ALNE for PCD-
+      01. Note that the combination of MSH-16 valued as AL and MSH-15 valued
+      as NE is consistent with the original acknowledgement rules used in
+      other IHE TFs. The receiving system must send (or not send)
+      acknowledgements as specified by this field.
+
+
+      For PCD-03 transactions, see section 3.3.4.4.1
+
+
+----------------------------------------------------------------------------
+---------------------------------------------------
+
+
+HL7 References
+
+    - More from Chapter 2
+         o MSH-15 Accept Acknowledgment Type (ID) 00015
+
+               ▪ Definition: This field identifies the conditions under
+                 which accept acknowledgments are required to be returned in
+                 response to this message. Required for enhanced
+                 acknowledgment mode. Refer to HL7 Table 015 -
+                 Accept/application acknowledgment conditions for valid
+                 values.
+
+         o MSH-16 Application Acknowledgment Type (ID) 00016
+               ▪ Definition: This field contains the conditions under
+                 which application acknowledgments are required to be
+                 returned in response to this message. Required for enhanced
+                 acknowledgment mode.
+

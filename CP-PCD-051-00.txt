@@ -1,0 +1,56 @@
+
+
+
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-051                          |
+|Change Proposal Status:             |Ballot                              |
+|Date of last update:                |2010-11-30                          |
+|Person assigned:                    |Ken Fuchs                           |
+
+                    Change Proposal Summary information:
+|Changes to IHE_PCD_TF_Vol1_FT_2010-10-18Draft                             |
+|Submitter’s Name(s) and e-mail      |Ken Fuchs                           |
+|address(es):                        |                                    |
+|Submission Date:                    |2010-11-30                          |
+|Integration Profile(s) affected:    |IHE PCD TF Volume 1                 |
+|Actor(s) affected:                  |Various                             |
+|IHE Technical Framework or          |IHE_PCD_TF_Vol1_FT_2010-10-18Draft  |
+|Supplement modified:                |                                    |
+|Volume(s) and Section(s) affected:  |Various                             |
+|Rationale for Change:                                                     |
+|The IHE PCD TF Volume 1 Draft was published on 2010-10-20 for voting.  As |
+|a result a number of comments were received and incorporated into this    |
+|single change proposal.                                                   |
+|Even though the changes proposed are editorial in nature, and the TF FT   |
+|did pass the voting process, it was decided to create this CP and resubmit|
+|an updated FT for another round of voting.                                |
+
+
+Section 1.7 – Improve description of RTM profile
+
+Section 2.1 – Update wording to improve consistency with other Domains
+
+Section 3.1 – Time Client is not an IHE-PCD Actor, remove from Existing
+Actors and remove from Table 3.1-1
+
+Section 3.2 – Maintain Time is not an IHE-PCD Transaction, remove from list
+of Transactions and from Table 3.2-1
+
+Section 4.1 – Fix reference to Section 4.2, and remove Maintain Time from
+Table 4.1-1
+
+Section 4.2 – Remove Subscribe to PCD Data, and fix reference to MLLP
+Transport in Table 4.2-1
+
+Section 5.1 – Add reference to PCD-03 and remove Maintain Time from Table
+5.1-1
+
+Section 6.2 – Add description of options and their purpose. Reformat Table
+6.2-1 to improve consistency with other similar tables in the TF.
+
+Glossary – Add definition of MLLP
+
+

@@ -1,0 +1,206 @@
+
+
+                             IHE Change Proposal
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-070-0                        |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |8-12-2011                           |
+|Person assigned:                    |John Rhoads                         |
+
+                    Change Proposal Summary information:
+|Example Text Change                                                       |
+|Submitter’s Name(s) and e-mail      |Stephen Swanson (sswanson@sjm.com)  |
+|address(es):                        |Gene Hageman                        |
+|                                    |(gene.hageman@medtronic.com)        |
+|                                    |Alexander Kraus                     |
+|                                    |(alexander.kraus@biotronik.com)     |
+|                                    |Ken Hoyme (ken.hoyme@bsci.com)      |
+|Submission Date:                    |June 13, 2012                       |
+|Integration Profile(s) affected:    |Implantable Device – Cardiac –      |
+|                                    |Observation                         |
+|Actor(s) affected:                  |None                                |
+|IHE Technical Framework or          |IHE Patient Care Device (PCD)       |
+|Supplement modified:                |Technical Framework; Volume 2;      |
+|                                    |Revision 1.0; August 12, 2011       |
+|Volume(s) and Section(s) affected:  |Volume 2 (PCD TF-2); Section        |
+|                                    |3.9.4.1.2.5                         |
+|Rationale for Change:                                                     |
+|There was confusion on what values should be contained in the OBX-5 fields|
+|when the Value Type (OBX-2) is Coded With Exceptions (CWE). The Change    |
+|Proposal clarifies the intended use of this field.                        |
+
+
+Proposed Changes:
+
+Replace the text defining the use of OBX-5with 3 with the following:
+
+OBX-3.1 Observation Identifier, Identifier shall be <Code> [numeric] as
+defined in Annex C.3 ‘Expanded Terms’ of IEEE 11073-10103 (see 3.9.3
+Referenced Standards).
+
+OBX-3.2 Observation Identifier, shall be  <Reference ID> as defined in
+Annex C.3 ‘Expanded Terms’ in IEEE 11073-10103 (see 3.9.3 Referenced
+Standards)
+
+OBX-3.3 Observation Identifier, Name of Coding System shall be MDC to
+reference the group of medical device communication standards (IEEE 11073-
+xxxxx)
+
+
+
+Replace the text defining the use of OBX-5 with the following:
+
+OBX-5 Observation Value – This is the actual value of the observation.
+
+If OBX-2 is of type CWE then
+
+  OBX-5.1 shall be <Code> [numeric] as defined in Annex D.3 ‘enumerations’
+  or Annex E.3 ‘vendor enumerations’ of IEEE 11073-10103 (see 3.9.3
+  Referenced Standards) .
+
+  OBX-5.2 shall be  <Enumerator Identifier>_<EnumerationCode [mnemonic]> as
+  defined in Annex D.3 ‘enumerations’ or Annex E.3 ‘vendor enumerations’ in
+  IEEE 11073-10103 (see 3.9.3 Referenced Standards)
+
+  OBX-5.3 shall be MDC to reference the group of medical device
+  communication standards (IEEE 11073-xxxxx)
+
+  OBX-5.9 can contain the according Display Name as defined in Annex D.3
+  ‘enumerations’ or Annex E.3 ‘vendor enumerations’ of IEEE 11073-10103
+  (see 3.9.3 Referenced Standard) or an equivalent (maybe more compact)
+  localized display name. If the vendor has implemented vendor-specific
+  extensions (per IEEE 11073-10103 Sections 8 and A.4) than OBX-5.9 is
+  required.  This display name should only be used by the receiving system
+  as a reference or if the Identifier in OBX-5.1 is unknown to the receiver
+  (e.g. for proprietary vendor content). Generation and localization of
+  display names in the receiving system shall always be preferred.
+
+
+
+
+OBX-5 Observation Value – This is the actual value of the observation.
+
+
+
+
+ If OBX-2 is of type CWE then
+
+  OBX-5.1 shall be an enumeration code [mnemonic] as defined in Annex D.3
+  ‘enumerations’ or Annex E.3 ‘vendor enumerations’ of IEEE 11073-10103
+  version 1.05.02 (10/04/2011) and
+  OBX-5.2 can contain the according display name as defined in Annex D.3
+  ‘enumerations’ or Annex E.3 ‘vendor enumerations’ of IEEE 11073-10103
+  version 1.05.02 (10/04/2011) or an equivalent display name in another
+  language.
+
+
+
+
+                             IHE Change Proposal
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-DOM-xxx (assigned by Domain      |
+|                                    |Technical Committee)                |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |8-12-2011                           |
+|Person assigned:                    |(assigned by Domain Technical       |
+|                                    |Committee)                          |
+
+                    Change Proposal Summary information:
+|Editorial Update – Implantable, Manufacturer                              |
+|Submitter’s Name(s) and e-mail      |Stephen Swanson (sswanson@sjm.com)  |
+|address(es):                        |Gene Hageman                        |
+|                                    |(gene.hageman@medtronic.com)        |
+|                                    |Alexander Kraus                     |
+|                                    |(alexander.kraus@biotronik.com)     |
+|                                    |Ken Hoyme (ken.hoyme@bsci.com)      |
+|Submission Date:                    |May 30, 2012                        |
+|Integration Profile(s) affected:    |Implantable Device – Cardiac –      |
+|                                    |Observation                         |
+|Actor(s) affected:                  |None                                |
+|IHE Technical Framework or          |IHE Patient Care Device (PCD)       |
+|Supplement modified:                |Technical Framework; Volume 2;      |
+|                                    |Revision 1.0; August 12, 2011       |
+|Volume(s) and Section(s) affected:  |Volume 2 (PCD TF-2); Section        |
+|                                    |3.9.4.1.2.7                         |
+|Rationale for Change:                                                     |
+|We need a means of associating a specific PDF in the message with an      |
+|episode group, if that PDF contains only the captured waveform for that   |
+|episode.                                                                  |
+
+
+Proposed Changes:
+
+Add the Observation Sub-ID row to Table 3.9.4.1.2.7-1: OBX Segment as
+follows:
+
+
+Name |Seq |DT |Len |Opt |Rep |Min |Max |Tbl |Fixed Value |Ex Val | |  Set
+ID - OBX |  1 |  SI |  4 |  R |  False |  0 |  1 |  |  |  | |  Value Type
+|  2 |  ID |  2 |  R |  False |  0 |  1 |  0125 | Y | ED | |  Observation
+Identifier |  3 |  CWE |  478 |  R |  False |  1 |  1 |  |    | | |  
+identifier |1 |  ST |  20 |  R |  |  1 |  1 |  | Y | 18750-0    | |   Text
+|2 |  ST |  199 |  R |  |  0 |  1 |  | Y |Cardiac Electrophysiology Report
+| |   name of coding system |3 |  ID |  20 |  R |  |  0 |  1 |  0396 | Y
+| LN | |  Observation Sub-ID |  4 |  ST |  20 |  RE |  False |  0 |  1 | 
+|  | 1 | |  Observation Value |  5 |  ED |  99999 |  R |  True |  0 |  * | 
+|  | Encapsulated PDF | |   source application |1 |  ST |  10 |  RE |  |  1
+|  1 | |Y | Application | |   type of data |2 |  ST |  10 |  RE |  |  1 | 
+1 | |Y | PDF | |   Encoding |4 |  ST |  10 |  RE |  |  1 |  1 | |Y | Base64
+| |   Data |5 |  ED |  * |  RE |  |  1 |  1 | |Y | Encapsulated and Base64
+binary encoded PDF File | |  Observation Result Status |  11 |  ID |  1 | 
+R |  False |  1 |  1 |  0085 |  |  | |  Date/Time of the Observation |  14
+|  TS |  26 |  RE |  False |  0 |  1 |  |    |    | |   Time |1 |  DTM | 
+24 |  R |  |  1 |  1 |  |  |  20040328134623.1234+0300 | |
+
+Replace the text describing OBX field usage following Table 3.9.4.1.2.7-1
+as follows:
+
+OBX-2 If sending an encapsulated PDF the value will be ED.  If referencing
+an external report the value will be RP.
+
+OBX-3 Value is a report ID from the LOINC coding system, and will be set to
+18750-0^Cardiac Electrophysiology Report^LN.
+
+OBX-4 If a value is provided here the embedded PDF will contain data
+related to a specific episode or EGM being referenced via grouping to other
+episode related data elements having the same Sub-ID in OBX-4 inside this
+message.
+
+OBX-5 If referencing an external document the Observation Value will
+contain a reference pointer to the external document.
+
+OBX-5.1 If sending an encapsulated PDF the Type of Data component will have
+the value “Application”
+
+OBX-5.2 If sending an encapsulated PDF the Data Subtype component will have
+the value “PDF”.
+
+OBX-5.3 Not used for an encapsulated PDF.
+
+OBX-5.3 will be empty.
+
+
+OBX-5.4 If sending an encapsulated PDF the Encoding component will have the
+value “Base64”.
+
+OBX-5.5 If sending an encapsulated PDF the Data component contains the
+encapsulated Base64-encoded PDF/A document in accordance with ISO 19005-1.
+
+   Notes:  1. An actor participating in this transaction must support
+         encapsulated data with a length beyond the nominal 65536 byte
+         limit of the OBX-5.
+
+      2. The base64 encoded stream must not include CR/LF characters, which
+         are forbidden within HL7 field text streams. Breaking a base64
+         encoded stream into lines of 76 characters or less is used for
+         email in accordance with RFC 822, but is not applicable to
+         encapsulated data in HL7.
+         The attached PDF or externally referenced report will contain in
+         its content the device ID, patient ID and name if known, and the
+         dates of the procedure and document.
+
+

@@ -1,0 +1,85 @@
+
+
+                             IHE Change Proposal
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-067-00                       |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |8-12-2011                           |
+|Person assigned:                    |John Rhoads                         |
+
+                    Change Proposal Summary information:
+|PID Model and Serial Number Parameter Name                                |
+|Submitter’s Name(s) and e-mail      |Stephen Swanson (sswanson@sjm.com)  |
+|address(es):                        |Gene Hageman                        |
+|                                    |(gene.hageman@medtronic.com)        |
+|                                    |Alexander Kraus                     |
+|                                    |(alexander.kraus@biotronik.com)     |
+|                                    |Ken Hoyme (ken.hoyme@bsci.com)      |
+|Submission Date:                    |April 05, 2012                      |
+|Integration Profile(s) affected:    |Implantable Device – Cardiac –      |
+|                                    |Observation                         |
+|Actor(s) affected:                  |Implantable Device – Cardiac –      |
+|                                    |Reporter                            |
+|                                    |Implantable Device – Cardiac –      |
+|                                    |Consumer                            |
+|IHE Technical Framework or          |IHE Patient Care Device (PCD)       |
+|Supplement modified:                |Technical Framework; Volume 2;      |
+|                                    |Revision 1.0; August 12, 2011       |
+|Volume(s) and Section(s) affected:  |Volume 2 (PCD TF-2); Section 3.9    |
+|                                    |(various subsections)               |
+|Rationale for Change:                                                     |
+|Updates where applied to the IEEE nomenclature which were not carried over|
+|to the IHE profile where “MDC_IDC_PG_” was replaced with the more widely  |
+|accepted “MDC_IDC_DEV_”. The abreviation PG was originally for ‘Pulse     |
+|Generator’ however the working group agreed that DEV for ‘Device’ is more |
+|appropriate.                                                              |
+
+
+Proposed Changes:
+
+Replace Section 3.9.4.1.2.2 (PID-3.1) by the following:
+
+PID-3.1 Patient Identifier List
+
+ID Number contains a unique identifier for the patient assigned by the
+Implantable Device – Cardiac – Reporter. Identifier Type Code is
+constrained by Table 0203 listed below (others can be included as defined
+in the 2.6 standard). The first identifier will always be the unique
+model/serial number of the implanted device with an identifier of type U
+(see table following). This will be used by the Implantable Device –
+Cardiac – Consumer / Repository actor to match the device interrogations
+with the patient accounts. Assigning Authority will be a unique name of the
+Implantable Device – Cardiac – Reporter system or owning organization that
+creates the observation and will be coded using the MDC_IDC Nomenclature,
+MDC_IDC_PGDEV_MFG term.
+
+
+
+
+
+Replace Table 3.9.4.1.2.2-2 HL7 Table 0203 Row 1 with the following:
+                     Table 3.9.4.1.2.2-2: HL7 Table 0203
+
+|Code|Description              |Notes                     |Usage|
+|U   |Model and Serial Number  |Model and Serial number   |R    |
+|    |of Device                |will be concatenated      |     |
+|    |IEEE 11073_10103         |together and will be      |     |
+|    |MDC_IDC_PGDEV_MODEL and  |unique within an Assigning|     |
+|    |MDC_IDC_PGDEV_SERIAL     |Authority.                |     |
+|    |                         |The format of the ID will |     |
+|    |                         |be following:             |     |
+|    |                         |“model:xxx/serial:yyy”    |     |
+|    |                         |Example:                  |     |
+|    |                         |model:XZY987/serial:abc123|     |
+
+
+
+
+Replace text in Table 3.9.4.1.2.5-1 Row 5 with the following:
+                      Table 3.9.4.1.2.5-1: OBX Segment
+Name |Seq |DT |Len |Opt |Rep |Min |Max |Tbl |Fixed Value |Ex Val | |   text
+|  2 |  ST |  199 |  O |  |  0 |  1 |  |  | MDC_IDC_PGDEV_TYPE | |
+
+

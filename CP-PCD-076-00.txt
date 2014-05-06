@@ -1,0 +1,31 @@
+
+
+
+Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-076-00                       |
+|Change Proposal Status:             |Ballot                              |
+|Date of last update:                |2012-06-05                          |
+|Person assigned:                    |John Rhoads                         |
+
+Change Proposal Summary information:
+|Numbering OBRs                                                            |
+|Submitter’s Name(s) and e-mail      |                                    |
+|address(es):                        |                                    |
+|Submission Date:                    |2011-11-03                          |
+|Integration Profile(s) affected:    |General                             |
+|Actor(s) affected:                  |General                             |
+|IHE Technical Framework or          |Final Text, August 11, 2011         |
+|Supplement modified:                |                                    |
+|Volume(s) and Section(s) affected:  |V. 2, App. B Sec. 7                 |
+|Rationale for Change: Text for OBR-1 Set ID OBR did not explicitly state  |
+|that the numbering of OBR segments in that field restarts at 1 in each new|
+|message                                                                   |
+
+
+Insert new text shown in bold underline.
+
+OBR-1   Set ID OBR
+
+Definition: For the first order transmitted in each message, the sequence
+number shall be 1; for the second order, it shall be 2; and so on.

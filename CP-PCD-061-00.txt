@@ -1,0 +1,116 @@
+
+
+                             IHE Change Proposal
+
+
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-061                          |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |2011-07-19                          |
+|Person assigned:                    |John Rhoads                         |
+
+                    Change Proposal Summary information:
+|RXR Segment Changes in PCD-03                                             |
+|Submitter’s Name(s) and e-mail      |Al Engelbert (al@ProtoLink.com)     |
+|address(es):                        |                                    |
+|Submission Date:                    |2011-08-01                          |
+|Integration Profile(s) affected:    |PCD PIV                             |
+|Actor(s) affected:                  |IOP and IOC                         |
+|IHE Technical Framework or          |PCD Technical Framework Volume 2,   |
+|Supplement modified:                |Revision X.X, published October 16, |
+|                                    |2010                                |
+|Volume(s) and Section(s) affected:  |Volume 2, Section 3.3.4.4.7         |
+|Rationale for Change:                                                     |
+|This CP addresses the following issues with the RXR segment:              |
+|Because the ‘Usage’ and ‘Cardinality’ attributes of RXR-3 (Administration |
+|Device) in the PIV Supplement were inconistent, this field was mistakenly |
+|identified as required in the Final Text, and should be changed to ‘RE’,  |
+|with the cardinality changed appropriately.                               |
+|The RXR-4 (Adminstration Method) field is currently only required when the|
+|order is for an IV piggyback or secondary infusion.  This change proposal |
+|makes the field always required, and defines the value to be used when the|
+|order is for a primary infusion.                                          |
+|There are three fields in the RXR segment which an IOP must populate from |
+|among a fixed set of values.  In each case, the data type for the field is|
+|CWE.  The values cited in the Technical Framework for these fields are not|
+|formatted as CWE; this change proposal corrects the format for those      |
+|values.                                                                   |
+|This change proposal explicitly identifies values that must be added to   |
+|the user-defined tables associated with RXR-3 (Administration Device) and |
+|RXR-4 (Administration Method).                                            |
+
+
+Proposed Changes:
+
+
+
+Modify the ‘Usage’ and ‘Card.’ column values for the RXR segment in Table
+3.3.4.4.7-1 as follows (changes are in bold):
+
+
+   Table 3.3.4.4.7-1 HL7 Attribute Table – RXR – Pharmacy/Treatment Route
+|SEQ   |LEN    |DT   |Usage  |Card. |TBL#    |ITEM #  |ELEMENT NAME          |
+|2     |250    |CWE  |RE     |[0..1]|0550    |00310   |Administration Site   |
+|3     |250    |CWE  |RRE    |[10..1|0164    |00311   |Administration Device |
+|      |       |     |       |]     |        |        |                      |
+|4     |250    |CWE  |RER    |[01..1|0165    |00312   |Administration Method |
+|      |       |     |       |]     |        |        |                      |
+|5     |250    |CWE  |RE     |[0..1]|        |01315   |Routing Instruction   |
+|6     |250    |CWE  |RE     |[0..1]|0495    |01670   |Administration Site   |
+|      |       |     |       |      |        |        |Modifier              |
+
+
+Modify the description of the definition of the ‘RXR-1 Route’ field in
+Section 3.3.4.4.7 as follows (changes are in bold):
+
+
+
+      Definition:  This field is the route of administration. The PCD TF
+      requires that this field be valued as IV ^IV^HL70162.
+
+
+
+Modify the description of the definition of the ‘RXR-3 Administration
+Device’ field in Section 3.3.4.4.7 as follows (changes are in bold):
+
+
+
+      Definition: Definition: This field contains the type of pump used to
+      administer the drug, if known by the BCMA system. The PCD TF requires
+      that this field be valued as IVP ^IVP^HL70164 for general infusion
+      devices or SYR ^SYR^HL70164 for syringe pump devices, if the type of
+      pump is known.
+
+      The following entry should be added to user-defined table #0164:
+
+
+
+
+      |Value                            |Description                       |
+|SYR                              |Syringe Pump                      |
+
+
+
+Modify the description of the definition of the ‘RXR-4 Administration
+Method’ field in Section 3.3.4.4.7 as follows (changes are in bold):
+
+
+
+      Definition: This field identifies whether the infusion is to be
+      administered as a primary infusion or as an IV piggyback or secondary
+      infusion.  When this is the case, the TF requires that this field be
+      valued as IVPB.  The TF requires that this field be valued as
+      ^IV^HL70165 for a primary infusion or ^IVPB^HL70165 for an IV
+      piggyback or secondary infusion.
+
+      The following entry should be added to user-defined table #0165:
+
+
+
+
+      |Value                            |Description                       |
+|IV                               |IV Primary                        |
+

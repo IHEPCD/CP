@@ -1,0 +1,51 @@
+
+
+                             IHE Change Proposal
+                            Tracking information:
+|IHE Domain                          |PCD Patient Care Devices            |
+|Change Proposal ID:                 |CP-PCD-058                          |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |2011-06-02                          |
+|Person assigned:                    |(assigned by Domain Technical       |
+|                                    |Committee)                          |
+
+                    Change Proposal Summary information:
+|ACM CP Drop AA actor to improve TF integration potential                  |
+|Submitter’s Name(s) and e-mail      |Monroe Pattillo, Philips Emergin,   |
+|address(es):                        |monroe.pattillo@philips.com         |
+|Submission Date:                    |2011-06-02                          |
+|Integration Profile(s) affected:    |Alarm Communication Management (ACM)|
+|Actor(s) affected:                  |Alarm Manager (AM), Alarm           |
+|                                    |Communicator (AC)                   |
+|IHE Technical Framework or          |Still a Supplement at Trial         |
+|Supplement modified:                |Implementation Status, not yet in   |
+|                                    |Technical Framework                 |
+|Volume(s) and Section(s) affected:  |Not applicable                      |
+|Rationale for Change:                                                     |
+|After three Connectathons in which the ACM profile was included, the AA   |
+|(Alarm Archiver) actor, and related PCD-08 and PCD-11 transactions, has   |
+|yet to be verified in a Connectathon by AA and AM actor vendor            |
+|implementations.  The absence of Connectathon verification of the AA actor|
+|and related PCD-08 and PCD-11 transactions is a barrier to the integration|
+|of the ACM Supplement into the PCD Technical Framework.                   |
+|In order to increase the potential for the ACM Supplement to be integrated|
+|into the PCD Technical Framework this CP drops from the Trial             |
+|Implementation the AA actor and related PCD-08 and PCD-11 transactions    |
+|between the AA and AM actors.                                             |
+|Should demand for an AA-like actor arise in the future it can be added    |
+|using CP to the Supplement or Technical Framework.                        |
+|Alternatively an AA actor similar capability could be implemented through |
+|vendors adopting the ADQ (Asynchronous Data Query) profile.               |
+|                                                                          |
+
+
+The individual line changes would be far too much to include in this CP
+document.  Instead the editorial changes are listed below.
+
+Remove from all diagrams, tables, and text references the…
+
+      AA actor
+
+      PCD-08 transaction
+
+      PCD-11 transaction

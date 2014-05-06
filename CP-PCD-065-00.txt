@@ -1,0 +1,56 @@
+
+
+                             IHE Change Proposal
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Devices                |
+|Change Proposal ID:                 |CP-PCD-065                          |
+|Change Proposal Status:             |Submitted                           |
+|Date of last update:                |2012-05-22                          |
+|Person assigned:                    |John Rhoads                         |
+
+                    Change Proposal Summary information:
+|Editorial Update - Glossary                                               |
+|Submitter’s Name(s) and e-mail      |Stephen Swanson (sswanson@sjm.com)  |
+|address(es):                        |Gene Hageman                        |
+|                                    |(gene.hageman@medtronic.com)        |
+|                                    |Alexander Kraus                     |
+|                                    |(alexander.kraus@biotronik.com)     |
+|                                    |Ken Hoyme (ken.hoyme@bsci.com)      |
+|Submission Date:                    |April 05, 2012                      |
+|Integration Profile(s) affected:    |Implantable Device – Cardiac –      |
+|                                    |Observation                         |
+|Actor(s) affected:                  |None                                |
+|IHE Technical Framework or          |IHE Patient Care Device (PCD)       |
+|Supplement modified:                |Technical Framework, Volume 1;      |
+|                                    |Revision 1.0; August 12, 2011       |
+|Volume(s) and Section(s) affected:  |Volume 1 (PCD TF-1); Glossary       |
+|Rationale for Change:                                                     |
+|Modify definition of ‘Cardiac Device Programmer’ to be specific for       |
+|implantable devices.                                                      |
+|Add one new definition for a ‘Implantable Cardiac Monitor’ which is       |
+|supported by the IDCO profile.                                            |
+
+
+Proposed Changes:
+
+Modify wording in Glossary with the following:
+
+    • Cardiac Device Programmer – A device used to nonivasively interrogate,
+      monitor, and alter the operating parametes of an implantable
+      pacemaker, implantable defibrillator, or implantable cadiac
+      resynchronization device, or implantable cardiac monitor.
+
+
+
+
+
+Add to the Glossary the following:
+
+    • Implantable Cardiac Monitor – An electronic device implanted beneath
+      the skin for monitoring/recording the electrical signals of the heart
+      muscle.
+
+
+
+

@@ -1,0 +1,107 @@
+
+
+                             IHE Change Proposal
+
+
+
+
+                            Tracking information:
+|IHE Domain                          |Patient Care Device                 |
+|Change Proposal ID:                 |CP-PCD-062                          |
+|Change Proposal Status:             |Final Text                          |
+|Date of last update:                |10/20/2011                          |
+|Person assigned:                    |Jeff Rinda                          |
+
+                    Change Proposal Summary information:
+|IPEC Trigger Event                                                        |
+|Submitter’s Name(s) and e-mail      |Jeff Rinda (jeff.rinda@hospira.com) |
+|address(es):                        |                                    |
+|Submission Date:                    |10/20/2011                          |
+|Integration Profile(s) affected:    |Infusion Pump Event Communication   |
+|                                    |(IPEC)                              |
+|Actor(s) affected:                  |Device Observation Reporter         |
+|IHE Technical Framework or          |Trial Implementation Version (August|
+|Supplement modified:                |12, 2011)                           |
+|Volume(s) and Section(s) affected:  |See below                           |
+|Rationale for Change:                                                     |
+|An HL7 change proposal for v2.9 for a new trigger event (ORU^R42) has been|
+|submitted in order to provide the ability for systems consuming           |
+|observation data to differentiate messages that represent device events   |
+|from other observations.                                                  |
+|The IPEC supplement currently uses ORU^Rxx to designate the trigger event.|
+|The purpose of this CP is to update all of the     trigger references from|
+|ORU^Rxx to ORU^R42.                                                       |
+
+
+Open Issues Section – modify as follows:
+    • ORU^Rxx trigger event number will be assigned at a later time.
+    • Possible alignment with the Pharmacy domain through the use of the
+      RAS^O17 message instead of ORU^Rxx
+
+    • ORU^R42 trigger event number will be balloted for HL7 version 2.9 at a
+      later time.
+    • Possible alignment with the Pharmacy domain through the use of the
+      RAS^O17 message instead of ORU^R42
+
+
+Section 3.Y.4.1.1 Trigger Events:
+The ORU^Rxx^ORU_R01 message is an unsolicited update initiated by the
+Device Observation Reporter. The ORU^Rxx can be sent with or without a
+preceding order…
+
+The ORU^R42^ORU_R01 message is an unsolicited update initiated by the
+Device Observation Reporter. The ORU^R42 can be sent with or without a
+preceding order…
+
+
+
+Section 3.Y.4.1.2 Message Semantics:
+The ORU^Rxx^ORU_R01 message structure provides…
+
+The ORU^R42^ORU_R01 message structure provides…
+
+
+
+Section 3.Y.4.1.3 Expected Actions:
+The ORU^Rxx^ORU_R01 message is sent from the DOR to the DOC…
+
+The ORU^R42^ORU_R01 message is sent from the DOR to the DOC…
+
+
+
+Section X.1.2.2 Infusion Event Sample Messages:
+Delivery Start Event
+MSH|^~\&|PAT_DEVICE_PUMPVENDOR^0003B10000000001^EUI-
+64|PAT_DEVICE_PUMPVENDOR^0003B10000000001^EUI-64|||20100706154719-
+0800||ORU^Rxx^ORU_R01|PCD10_20100706154719|P|2.6|||NE|AL|||EN^English^ISO659
+|| ^^1.3.6.1.4.1.19376.1.6.1.10.1^ISO
+Delivery Start Event
+MSH|^~\&|PAT_DEVICE_PUMPVENDOR^0003B10000000001^EUI-
+64|PAT_DEVICE_PUMPVENDOR^0003B10000000001^EUI-64|||20100706154719-
+0800||ORU^R42^ORU_R01|PCD10_20100706154719|P|2.6|||NE|AL|||EN^English^ISO659
+|| ^^1.3.6.1.4.1.19376.1.6.1.10.1^ISO
+
+Delivery Stop Event
+MSH|^~\&|PAT_DEVICE_PUMPVENDOR^0003B10000000001^EUI-
+64|PAT_DEVICE_PUMPVENDOR^0003B10000000001^EUI-64|||20100706163708-
+0800||ORU^Rxx^ORU_R01|PCD10_20100706163708|P|2.6|||NE|AL|||EN^English^ISO659
+|| ^^1.3.6.1.4.1.19376.1.6.1.10.1^ISO
+Delivery Stop Event
+MSH|^~\&|PAT_DEVICE_PUMPVENDOR^0003B10000000001^EUI-
+64|PAT_DEVICE_PUMPVENDOR^0003B10000000001^EUI-64|||20100706163708-
+0800||ORU^R42^ORU_R01|PCD10_20100706163708|P|2.6|||NE|AL|||EN^English^ISO659
+|| ^^1.3.6.1.4.1.19376.1.6.1.10.1^ISO
+
+Delivery Complete Event
+MSH|^~\&|PAT_DEVICE_PUMPVENDOR^0003B10000000001^EUI-
+64|PAT_DEVICE_PUMPVENDOR^0003B10000000001^EUI-64|||20100707023629-
+0800||ORU^Rxx^ORU_R01|PCD10_20100706163708|P|2.6|||NE|AL|||EN^English^ISO659
+|| ^ ^1.3.6.1.4.1.19376.1.6.1.10.1^ISO
+Delivery Complete Event
+MSH|^~\&|PAT_DEVICE_PUMPVENDOR^0003B10000000001^EUI-
+64|PAT_DEVICE_PUMPVENDOR^0003B10000000001^EUI-64|||20100707023629-
+0800||ORU^R42^ORU_R01|PCD10_20100706163708|P|2.6|||NE|AL|||EN^English^ISO659
+|| ^ ^1.3.6.1.4.1.19376.1.6.1.10.1^ISO
+
+
+
